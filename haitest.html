@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دستیار هوشمند آتی</title>
+    <style>
+        #userContainer{
+            margin-bottom: 10px !important;
+            margin-right: auto !important;
+        }
+
+        #botContainer{
+            margin-bottom: 10px !important;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-icon {
+            width: 90px;
+            height: 90px;
+            background-color: #FDB915;
+            border-radius: 50%;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-icom-img{
+            transform: scale(2);
+        }
+
+        .chat-container {
+            width: 0;
+            height: 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-container.expanded {
+            width: 400px;
+            height: 500px;
+            opacity: 1;
+        }
+
+        .chat-header {
+            background-color: #FDB915;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h1 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        @media (max-width:768px) {
+            .chat-container.expanded {
+                height: 60%;
+                max-width: 85vw;
+            }
+            ul, li {
+                list-style-type: none;
+                padding-right: 4px;
+                padding: 1px;
+            }
+            li li a {
+                padding: 10px;
+            }
+            .chat-icom-img {
+                transform: scale(1);
+            }
+            .chat-icon {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .clarification-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+
+        .chat-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background-color: white;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #sendButton {
+            margin-right: 10px;
+            padding: 10px 15px;
+            background-color: #FDB915;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #sendButton:hover {
+            background-color: #102369;
+        }
+
+        .clarification-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+
+        .clarification-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .confirmation-btn {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+
+        .confirmation-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .bot-message,
+        .user-message {
+            padding: 8px 12px;
+            margin-bottom: 10px !important;
+            border-radius: 5px;
+            max-width: 80%;
+            font-size: 0.9em;
+            word-wrap: break-word;
+        }
+
+        .bot-message {
+            background-color: #e0e0e0;
+            margin-left: auto;
+        }
+
+        .user-message {
+            background-color: #102369;
+            color: white;
+            margin-right: auto !important;
+        }
+
+        .typing-indicator {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-left: auto;
+            margin-bottom: 10px;
+        }
+
+        .typing-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #888;
+            margin: 0 2px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .bot-message a {
+            color: #0066cc;
+            text-decoration: underline;
+        }
+
+        .bot-message a:hover {
+            color: #004499;
+        }
+
+        ul, li {
+            list-style-type: none;
+            padding-right: 10px;
+        }
+        
+        li li a {
+            padding: 10px;
+        }
+        
+        .phone-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .number {
+            direction: ltr;
+            unicode-bidi: isolate;
+            display: inline;
+            margin-right: 50px;
+        }
+
+        .accordion {
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .accordion-header {
+            background-color: #f0f0f0;
+            color: rgb(22, 2, 2);
+            padding: 12px 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: #e0e0e0;
+        }
+
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active::after {
+            content: '-';
+        }
+
+        .accordion-content {
+            background-color: #f9f9f9;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 15px;
+        }
+
+        .accordion-content.show {
+            padding: 15px;
+            max-height: 1000px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+
+        .tour-list {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .tour-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tour-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-tag {
+            background-color: #FDB915;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+    <div class="chat-icon" id="chatIcon"><span class="chat-icom-img">💬</span></div>
+
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header">
+            <h1>دستیار هوشمند اطلاع رسانی آتی</h1>
+            <button class="close-btn" id="closeBtn">×</button>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="سوال خود را بنویسید...">
+            <button id="sendButton">ارسال</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { AutoTokenizer } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2";
+
+        // مدل و توکنایزر
+        let model;
+        let tokenizer;
+        let faqEmbeddings = [];
+        let isModelLoading = false;
+
+        // بارگذاری مدل TensorFlow.js و توکنایزر
+        async function loadModel() {
+            if (isModelLoading || model) return;
+            isModelLoading = true;
+            
+            try {
+                [model, tokenizer] = await Promise.all([
+                    tf.loadGraphModel('https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/models/tfjs_model_quantized/model.json', {
+                        onProgress: (progress) => {
+                            const percent = (progress * 100).toFixed(1);
+                        }
+                    }),
+                    AutoTokenizer.from_pretrained('https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/models/local_tokenizer/')
+                ]);
+
+                console.log("مدل و توکنایزر با موفقیت بارگذاری شدند.");
+                aiModelLoaded = true;
+              
+            } catch (error) {
+                console.error("خطا در بارگذاری مدل یا توکنایزر:", error);
+                aiModelLoaded = false;
+            } finally {
+                isModelLoading = false;
+            }
+        }
+
+
+        // تولید امبدینگ برای یک متن
+        async function getEmbedding(text) {
+            if (!model || !tokenizer) return null;
+
+            const max_length = 64; // کاهش طول برای عملکرد بهتر در مرورگر
+            const tokenized = tokenizer(text, { padding: 'max_length', truncation: true, max_length: max_length });
+            
+            const inputIds = tf.tensor(tokenized.input_ids.tolist(), [1, max_length], 'int32');
+            const attentionMask = tf.tensor(tokenized.attention_mask.tolist(), [1, max_length], 'int32');
+
+            const output = await model.execute({ 'input_ids': inputIds, 'attention_mask': attentionMask });
+            // The output can be a tensor or a map of tensors. For BERT-like models, we expect 'last_hidden_state'.
+            const outputTensor = output['last_hidden_state'] || (Array.isArray(output) ? output[0] : output);
+
+            // We take the embedding of the [CLS] token, which is the first one.
+            const embedding = outputTensor.slice([0, 0, 0], [1, 1, -1]).squeeze();
+            
+            // Debugging: Log embedding values before normalization
+            const embeddingValues = embedding.dataSync();
+            
+            const normalizedEmbedding = tf.tidy(() => {
+                const norm = embedding.norm();
+                // Avoid division by zero
+                if (norm.dataSync()[0] === 0) {
+                    return embedding; 
+                }
+                return embedding.div(norm);
+            });
+
+            // آزادسازی حافظه
+            inputIds.dispose();
+            attentionMask.dispose();
+            if (output !== outputTensor) output.dispose();
+            outputTensor.dispose();
+            embedding.dispose();
+
+            return normalizedEmbedding;
+        }
+
+        // تحلیل سوال با مدل و یافتن بهترین پاسخ از FAQ
+        async function analyzeWithAI(question) {
+            if (!aiModelLoaded || faqEmbeddings.length === 0) {
+                return null;
+            }
+
+            const questionEmbedding = await getEmbedding(question);
+            if (!questionEmbedding) return null;
+
+            let bestMatch = { score: -1, faq: null };
+
+            // Using tf.tidy to manage memory of intermediate tensors
+            tf.tidy(() => {
+                for (const faqItem of faqEmbeddings) {
+                    const similarity = tf.dot(questionEmbedding, faqItem.embedding).dataSync()[0];
+                    
+                    // Debugging: Log similarity score
+                    if (isNaN(similarity)) {
+                    }
+
+                    if (similarity > bestMatch.score) {
+                        bestMatch = { score: similarity, faq: faqItem.faq };
+                    }
+                }
+            });
+
+            questionEmbedding.dispose();
+
+            // یک آستانه برای شباهت تعیین می‌کنیم
+            const SIMILARITY_THRESHOLD = 0.75; // کاهش آستانه برای افزایش حساسیت مدل
+            if (bestMatch.score > SIMILARITY_THRESHOLD) {
+                return bestMatch.faq;
+            }
+            return null;
+        }
+
+        // تشخیص قصد کاربر (ساده‌شده)
+        function detectIntent(embedding) {
+            return "general_query";
+        }
+
+        // استخراج موجودیت‌ها (ساده‌شده)
+        function extractEntities(question) {
+            const entities = [];
+            
+            // تشخیص کشورها
+            const countries = [
+                "چین"," گرجستان"," عمان"," امارات"," ترکیه",
+                " هند"," سریلانکا"," ویتنام"," فیلیپین"," کره جنوبی" ,
+                " ژاپن","سوئیس"," هلند", "روسیه"," فرانسه", "ایتالیا",
+                " آلمان"," لهستان", "انگلستان"," اسپانیا"," پرتغال",
+                " بلژیک"," اتریش"," چک"," سوئد "," فنلاند","برزیل"," کانادا"
+            ]
+            countries.forEach(country => {
+                if (question.includes(country)) {
+                    entities.push({
+                        type: "country",
+                        value: country
+                    });
+                }
+            });
+
+            // تشخیص مقاصد
+            if (question.includes("تور") || question.includes("سفر")) {
+                entities.push({
+                    type: "intent",
+                    value: "tour_inquiry"
+                });
+            }
+            return entities;
+        }
+
+        let combinedFaqs = [];
+        let staticFaqData = {};
+        let externalFaqData = {};
+        let continentsData = {};
+        let months ={};
+        let aiModelLoaded = false;
+        let smallTalk = {};
+
+        // بارگذاری داده‌ها از فایل JSON
+        function loadDataFromJSON() {
+            return fetch('https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPOSITORY_NAME/fulldata.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    staticFaqData = data.staticFaqData;
+                    externalFaqData = data.externalFaqData;
+                    continentsData = data.continents;
+                    months = data.month
+                    smallTalk = data.smallTalk
+                    console.log("داده‌ها با موفقیت از فایل JSON بارگذاری شدند.");
+                    loadAndCombineData();
+                })
+                .catch(error => {
+                    console.error('مشکل در بارگذاری فایل JSON:', error);
+                });
+        }
+
+        // بارگذاری و ترکیب داده‌ها و محاسبه امبدینگ‌ها
+        async function loadAndCombineData() {
+            let allFaqs = [...staticFaqData.faqs];
+
+            for (const category in externalFaqData.faqs) {
+                allFaqs = allFaqs.concat(externalFaqData.faqs[category]);
+            }
+            
+            combinedFaqs = allFaqs;
+            console.log("داده‌ها با موفقیت بارگذاری و ترکیب شدند.");
+
+            // منتظر می‌مانیم تا مدل بارگذاری شود
+            while (isModelLoading) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+
+            if (aiModelLoaded) {     
+                const embeddingPromises = combinedFaqs.map(async (faq) => {
+                    const embedding = await getEmbedding(faq.question);
+                    if (embedding) {
+                        faqEmbeddings.push({ faq: faq, embedding: embedding });
+                    }
+                });               
+                await Promise.all(embeddingPromises);
+                console.log(`محاسبه امبدینگ برای ${faqEmbeddings.length} سوال به پایان رسید.`);
+            }
+        }
+        // مترادف‌های کشورها
+        const countrySynonyms = {
+            "سوییس": "سوئیس",
+            "المان": "آلمان",
+            "امریکایی": "امریکا",
+            "اسیایی": "اسیا",
+            "اروپایی": "اروپا",
+            "هند": "هندوستان",
+            "انگلیس": "انگلستان",
+            "انکلیس": "انگلستان",
+            "کره": "کره جنوبی",
+            "ترابز": "ترابزون",
+            "روس": "روسیه",
+            "استانبول": "ترکیه",
+            "دبی": "امارات"
+        };
+
+        // اعمال مترادف‌ها
+        function applySynonyms(text) {
+            let processedText = text;
+            for (const synonym in countrySynonyms) {
+                const regex = new RegExp(synonym, "g");
+                processedText = processedText.replace(regex, countrySynonyms[synonym]);
+            }
+            return processedText;
+        }
+
+        // نرمال‌سازی متن
+        function normalizeText(text) {
+            return text.trim().toLowerCase().replace(/\s+/g, '');
+        }
+
+        // تشخیص انگلیسی بودن متن
+        function isEnglish(text) {
+            return /[a-zA-Z]/.test(text);
+        }
+
+        // تحلیل تورها بر اساس معیارهای مختلف
+        function analyzeTours(question) {
+            const allTours = [...externalFaqData.faqs["تورهای خارجی"], ...externalFaqData.faqs["تورهای داخلی"]];
+            let filteredTours = allTours;
+            const questionWithSynonyms = applySynonyms(question);
+
+            // --- بخش تحلیل پیشرفته ---
+            const foundContinents = Object.keys(continentsData).filter(c => questionWithSynonyms.includes(c));
+            const foundMonths = Object.keys(months).filter(month => question.includes(month));
+
+            const hasContinent = foundContinents.length > 0;
+            const hasMonth = foundMonths.length > 0;
+
+            if (hasContinent || hasMonth) {
+                if (hasContinent) {
+                    const targetCountries = foundContinents.flatMap(c => continentsData[c].map(country => applySynonyms(country.trim())));
+                    filteredTours = filteredTours.filter(tour => {
+                        const tourKeywords = (tour.keywords || []).map(k => applySynonyms(k.trim()));
+                        const questionWords = (tour.question || "").split(/[\s()،,]+/).map(w => applySynonyms(w.trim()));
+                        const tourElements = [...new Set([...tourKeywords, ...questionWords])];
+                        return tourElements.some(element => targetCountries.includes(element));
+                    });
+                }
+
+                if (hasMonth) {
+                    filteredTours = filteredTours.filter(tour => {
+                        const questionText = tour.question || "";
+                        return foundMonths.some(month => questionText.includes(month));
+                    });
+                }
+                
+                return { type: 'dynamic', results: filteredTours };
+            }
+
+            // --- بخش تحلیل ساده (مثل ارزانترین) ---
+            const lowerQuestion = normalizeText(question);
+            if (lowerQuestion.includes('ارزانترین') || lowerQuestion.includes('ارزان‌ترین') || lowerQuestion.includes('کم‌قیمت')) {
+                const pricedTours = allTours.filter(tour => tour.price && tour.price !== "قیمت موجود نیست").map(tour => {
+                    let numericPrice = 0;
+                    const priceStr = tour.price.replace(/[^0-9]/g, '');
+                    if (tour.price.includes('دلار')) numericPrice = parseInt(priceStr) * 90000;
+                    else if (tour.price.includes('یورو')) numericPrice = parseInt(priceStr) * 103000;
+                    else numericPrice = parseInt(priceStr) || 0;
+                    return { ...tour, numericPrice };
+                });
+                
+                const cheapestTours = pricedTours.sort((a, b) => a.numericPrice - b.numericPrice).slice(0, 5);
+                return { type: 'cheapest', results: cheapestTours };
+            }
+
+            return { type: 'none' };
+        }
+
+        function handleSmallTalk(question) {
+            for (const key in smallTalk) {
+                if (question.includes(key)) {
+                    const response = smallTalk[key];
+                    return Array.isArray(response) ? response[Math.floor(Math.random() * response.length)] : response;
+                }
+            }
+            return null;
+        }
+
+        // یافتن بهترین پاسخ
+        async function findBestAnswer(userQuestion) {
+            // مرحله ۱: تلاش برای پاسخ با هوش مصنوعی
+            // بررسی می‌کنیم که آیا مدل بارگذاری شده است یا خیر
+            if (aiModelLoaded) {
+                console.log("تلاش برای یافتن پاسخ با استفاده از مدل هوش مصنوعی...");
+                const aiAnswer = await analyzeWithAI(userQuestion);
+                if (aiAnswer) {
+                    console.log("پاسخ توسط هوش مصنوعی پیدا شد.");
+                    return { 
+                        type: 'direct', 
+                        content: formatFaqAnswer(aiAnswer) 
+                    };
+                } 
+            }
+
+            // مرحله ۲: اگر هوش مصنوعی پاسخی نداد، از منطق مبتنی بر قوانین استفاده می‌کنیم
+            const questionWithSynonyms = applySynonyms(userQuestion);
+            
+            // 1. پاسخ به گپ و گفت کوتاه
+            const smallTalkResponse = handleSmallTalk(userQuestion);
+            if (smallTalkResponse) {
+                return { type: 'direct', content: smallTalkResponse };
+            }
+
+            // 2. تحلیل هوشمند درخواست تور
+            const tourAnalysis = analyzeTours(userQuestion);
+            if (tourAnalysis.type === 'dynamic') {
+                if (tourAnalysis.results.length === 0) {
+                    return { type: 'direct', content: "در حال حاضر اطلاعاتی برای این مورد موجود نیست." };
+                }
+                if (tourAnalysis.results.length === 1) {
+                    return { type: 'direct', content: formatFaqAnswer(tourAnalysis.results[0]) };
+                }
+                if (tourAnalysis.results.length > 1 && tourAnalysis.results.length <= 5) {
+                    let response = `<b>نتایج یافت شده برای "${userQuestion}":</b><div class="tour-list">`;
+                    tourAnalysis.results.forEach(tour => {
+                        response += `<div class="tour-item">${tour.question} ${tour.answer}</div>`;
+                    });
+                    response += '</div>';
+                    return { type: 'direct', content: response };
+                }
+                return { type: 'clarification', question: `برای سوال شما ${tourAnalysis.results.length} نتیجه پیدا شدند، کدام یک از موارد زیر مورد نظر شما است؟`, options: tourAnalysis.results.slice(0, 13) };
+            }
+            if (tourAnalysis.type === 'cheapest' && tourAnalysis.results.length > 0) {
+                let response = '<b>ارزان‌ترین تورهای موجود:</b><div class="tour-list">';
+                tourAnalysis.results.forEach(tour => {
+                    response += `<div class="tour-item"><span class="price-tag">${tour.price}</span> ${tour.question} (${tour.location})</div>`;
+                });
+                response += '</div>';
+                return { type: 'direct', content: response };
+            }
+            
+            // 3. پاسخ‌های سریع
+            const lowerQuestion = normalizeText(questionWithSynonyms);
+            if (isEnglish(lowerQuestion)) {
+                return { type: 'direct', content: "لطفاً به فارسی تایپ کنید." };
+            }
+
+            // 4. جستجوی هوشمند کلمات کلیدی (Fallback)
+            const matchedFAQs = [];
+            let specificPriceQuery = false;
+
+            if (lowerQuestion.includes("قیمت")) {
+                specificPriceQuery = true;
+            }
+
+            const query = lowerQuestion.replace("قیمت", "");
+
+            for (const faq of combinedFaqs) {
+                const searchableFields = [
+                    faq.question,
+                    ...(faq.keywords || []),
+                    faq.category,
+                    faq.location,
+                    faq.duration,
+                    faq.price
+                ].filter(Boolean).map(normalizeText);
+
+                const matchScore = searchableFields.reduce((score, field) => {
+                    if (field && query.includes(field)) {
+                        return score + field.length;
+                    }
+                    return score;
+                }, 0);
+
+                if (matchScore > 0) {
+                    matchedFAQs.push({ faq, score: matchScore });
+                }
+            }
+
+            if (matchedFAQs.length === 1) {
+                const faq = matchedFAQs[0].faq;
+                let answer = specificPriceQuery && faq.price ? `قیمت ${faq.question}: ${faq.price}` : formatFaqAnswer(faq);
+                return { type: 'direct', content: answer };
+            }
+            
+            if (matchedFAQs.length > 1) {
+                matchedFAQs.sort((a, b) => b.score - a.score);
+                const bestMatch = matchedFAQs[0].faq;
+                const bestScore = matchedFAQs[0].score;
+                
+                if (bestScore > 1 && (bestScore > matchedFAQs[1].score || matchedFAQs.length === 1)) {
+                    let answer = specificPriceQuery && bestMatch.price ? `قیمت ${bestMatch.question}: ${bestMatch.price}` : formatFaqAnswer(bestMatch);
+                    return { type: 'direct', content: answer };
+                }
+
+                return { type: 'clarification', question: `برای سوال شما ${matchedFAQs.length} نتیجه پیدا شدند، کدام یک از موارد زیر مورد نظر شما است؟`, options: matchedFAQs.slice(0, 13).map(m => m.faq) };
+            }
+
+            // 5. پاسخ پیش‌فرض نهایی
+            const defaultResponses = [
+                "متاسفانه پاسخی برای سوال شما پیدا نکردم. می‌توانید سوال خود را به شکل دیگری بپرسید.",
+                "به نظر می‌رسد این مورد در بانک اطلاعاتی من وجود ندارد. برای اطلاعات بیشتر می‌توانید با شماره <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+                "متوجه سوال شما نشدم. لطفا واضح‌تر بپرسید.",
+                "در حال حاضر اطلاعاتی در دسترس نیست."
+            ];
+            return { type: 'direct', content: defaultResponses[Math.floor(Math.random() * defaultResponses.length)] };
+        }
+
+        // قالب‌بندی پاسخ FAQ
+        function formatFaqAnswer(faq) {
+            let answer = `<b>${faq.question}</b><br>`;
+            if (faq.location) answer += `مکان: ${faq.location}<br>`;
+            if (faq.duration) answer += `مدت: ${faq.duration}<br>`;
+            if (faq.flight) answer += `پرواز: ${faq.flight}<br>`;
+            if (faq.price) answer += `قیمت: ${faq.price}<br>`;
+            if (faq.answer) answer += `${faq.answer}<br>`;
+            return answer;
+        }
+
+        // کدهای اصلی JavaScript
+        document.addEventListener('DOMContentLoaded', function () {
+            loadModel();
+            loadDataFromJSON();
+
+            const chatIcon = document.getElementById('chatIcon');
+            const chatContainer = document.getElementById('chatContainer');
+            const closeBtn = document.getElementById('closeBtn');
+            const chatBody = document.getElementById('chatBody');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+
+            let isBotTyping = false;
+            let isExpanded = false;
+
+            chatIcon.addEventListener('click', expandChat);
+            closeBtn.addEventListener('click', collapseChat);
+
+            function expandChat() {
+                if (!isExpanded) {
+                    chatContainer.classList.add('expanded');
+                    isExpanded = true;
+                    initializeChat();
+                }
+            }
+
+            function collapseChat() {
+                chatContainer.classList.remove('expanded');
+                isExpanded = false;
+            }
+
+            function initializeChat() {
+                if (chatBody.children.length === 0) {
+                    addBotMessage('سلام، وقت بخیر. دستیار هوشمند آتی در خدمت شماست. 👋');
+                }
+            }
+
+            // شبیه‌سازی تایپ کردن بات
+            function simulateTyping(callback) {
+                isBotTyping = true;
+
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                chatBody.appendChild(typingDiv);
+                scrollToBottom();
+
+                setTimeout(() => {
+                    chatBody.removeChild(typingDiv);
+                    callback();
+                    isBotTyping = false;
+                    scrollToBottom();
+                }, 1500);
+            }
+
+            // اضافه کردن پیام کاربر
+            function addUserMessage(message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'user-message';
+                messageDiv.id = 'userContainer';
+                messageDiv.textContent = message;
+                chatBody.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            // اضافه کردن پیام بات با پشتیبانی از HTML
+            function addBotMessage(message, allowHTML = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'bot-message';
+                messageDiv.id = 'botContainer';
+
+                if (allowHTML) {
+                    messageDiv.innerHTML = message;
+                    setTimeout(() => {
+                        setupAccordions();
+                    }, 100);
+                } else {
+                    messageDiv.textContent = message;
+                }
+
+                chatBody.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            function handleClarification(faq) {
+                const oldButtons = document.querySelector('.clarification-buttons');
+                if (oldButtons) {
+                    oldButtons.remove();
+                }
+                
+                addUserMessage(faq.question);
+                
+                simulateTyping(() => {
+                    addBotMessage(formatFaqAnswer(faq), true);
+                    askForAnotherQuestion();
+                });
+            }
+
+            function askForAnotherQuestion() {
+                const container = document.createElement('div');
+                container.className = 'confirmation-buttons';
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'bot-message';
+                messageDiv.innerHTML = `<p>اگر به اطلاعات بیشتری نیاز دارید یا سوال دیگری دارید، خوشحال می‌شوم کمک کنم!</p>`;
+                messageDiv.appendChild(container);
+                
+                chatBody.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            function displayClarification(question, options) {
+                const container = document.createElement('div');
+                container.className = 'clarification-buttons';
+
+                options.forEach(faq => {
+                    const button = document.createElement('button');
+                    button.className = 'clarification-btn';
+                    button.textContent = faq.question;
+                    button.onclick = () => handleClarification(faq);
+                    container.appendChild(button);
+                });
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'bot-message';
+                messageDiv.innerHTML = `<p>${question}</p>`;
+                messageDiv.appendChild(container);
+                
+                chatBody.appendChild(messageDiv);
+                scrollToBottom();
+            }
+
+            async function sendUserMessage() {
+                const message = userInput.value.trim();
+                if (!message || isBotTyping) return;
+
+                addUserMessage(message);
+                userInput.value = '';
+
+                simulateTyping(async () => {
+                    const response = await findBestAnswer(message);
+                    
+                    if (response.type === 'direct') {
+                        addBotMessage(response.content, true);
+                    } else if (response.type === 'clarification') {
+                        displayClarification(response.question, response.options);
+                    }
+                });
+            }
+
+            // تنظیم آکاردئون‌ها
+            function setupAccordions() {
+                const accordionHeaders = document.querySelectorAll('.accordion-header');
+                    
+                accordionHeaders.forEach(header => {
+                    header.removeEventListener('click', toggleAccordion);
+                    header.addEventListener('click', toggleAccordion);
+                });
+                    
+                function toggleAccordion() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('show');
+                }
+            }
+
+            // اسکرول به پایین
+            function scrollToBottom() {
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            // رویدادهای کلیک و کیبورد
+            sendButton.addEventListener('click', sendUserMessage);
+            userInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') sendUserMessage();
+            });
+        });
+    </script>
+</body>
+</html>

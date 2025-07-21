@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>دستیار هوشمند تورها</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; margin: 0; padding: 20px; direction: rtl; }
+    #chat { max-width: 720px; margin: auto; background: white; border-radius: 10px; padding: 20px; }
+    #messages { max-height: 400px; overflow-y: auto; margin-bottom: 10px; }
+    .message { margin: 10px 0; padding: 10px; border-radius: 6px; }
+    .user { background-color: #cce5ff; text-align: right; }
+    .bot { background-color: #eeeeee; text-align: left; white-space: pre-line; }
+    input { width: 70%; padding: 10px; }
+    button { padding: 10px 20px; background-color: #0077cc; color: white; border: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+<div id="chat">
+  <h2>دستیار هوشمند تورهای خارجی</h2>
+  <div id="messages"></div>
+  <input type="text" id="userInput" placeholder="مثلاً: تور برزیل در کدام ماه برگزار می‌شود؟" />
+  <button id="sendBtn">ارسال</button>
+</div>
+
+<script>
+let model;
+let tokenizer;
+let tours = [];
+let toursEmbeddings = [];
+
+// Load tokenizer
+async function loadTokenizer() {
+  const { AutoTokenizer } = window.transformers;
+  tokenizer = await AutoTokenizer.from_pretrained('Xenova/parsbert-base-uncased');
+  console.log("✅ توکنایزر فارسی بارگذاری شد");
+}
+
+// Load model
+async function loadModel() {
+  model = await tf.loadGraphModel("model.json");
+  console.log("✅ مدل بارگذاری شد");
+}
+
+// Prepare tour text
+function buildText(tour) {
+  return `${tour.title} ${tour.country} ${tour.month} ${tour.description}`;
+}
+
+// Get embedding from model
+async function getEmbedding(text) {
+  const tokens = tokenizer(text, { padding: true, truncation: true, max_length: 128 });
+  const input_ids = tf.tensor(tokens.input_ids.data, tokens.input_ids.dims, 'int32');
+  const attention_mask = tf.tensor(tokens.attention_mask.data, tokens.attention_mask.dims, 'int32');
+  const outputs = await model.executeAsync({ input_ids, attention_mask });
+  const embedding = outputs.last_hidden_state.mean(1); // mean pooling
+  return embedding;
+}
+
+// Cosine similarity
+function cosineSimilarity(t1, t2) {
+  const dot = tf.sum(tf.mul(t1, t2));
+  const norm1 = tf.norm(t1);
+  const norm2 = tf.norm(t2);
+  return dot.div(norm1.mul(norm2));
+}
+
+// Get intelligent answer
+async function getAnswer(question) {
+  const qEmbed = await getEmbedding(question);
+  const sims = toursEmbeddings.map((embed, idx) => {
+    const score = cosineSimilarity(qEmbed, embed).dataSync()[0];
+    return { tour: tours[idx], score };
+  });
+
+  const top = sims.filter(s => s.score > 0.6).sort((a, b) => b.score - a.score);
+
+  if (top.length === 0)
+    return "متاسفم، توری مرتبط با سوال یافت نشد.";
+
+  let msg = `تعداد ${top.length} تور مرتبط یافت شد:\n\n`;
+  top.forEach((t, i) => {
+    msg += `${i + 1}. ${t.tour.title} – ${t.tour.duration} – ${t.tour.price}\n📅 ${t.tour.start_date} (${t.tour.month})\n🔗 ${t.tour.url}\n\n`;
+  });
+  return msg.trim();
+}
+
+// UI helpers
+function addMessage(type, text) {
+  const div = document.createElement("div");
+  div.className = "message " + type;
+  div.textContent = text;
+  document.getElementById("messages").appendChild(div);
+  document.getElementById("messages").scrollTop = 99999;
+}
+
+document.getElementById("sendBtn").addEventListener("click", async () => {
+  const input = document.getElementById("userInput").value.trim();
+  if (!input) return;
+  addMessage("user", input);
+  document.getElementById("userInput").value = "";
+  addMessage("bot", "⏳ در حال تحلیل سوال...");
+
+  const reply = await getAnswer(input);
+  const botMsgs = document.querySelectorAll(".bot");
+  botMsgs[botMsgs.length - 1].remove();
+  addMessage("bot", reply);
+});
+
+// Initialization
+(async () => {
+  await loadTokenizer();
+  await loadModel();
+  const res = await axios.get("tours.json");
+  tours = res.data.tours;
+
+  for (const tour of tours) {
+    const text = buildText(tour);
+    const embed = await getEmbedding(text);
+    toursEmbeddings.push(embed);
+  }
+
+  console.log("✅ آماده پاسخگویی هوشمند");
+})();
+</script>
+
+</body>
+</html>

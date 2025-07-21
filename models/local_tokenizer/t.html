@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>دستیار هوشمند اطلاع‌رسانی آتی</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { text-align: center; }
+        #userInput { width: 80%; padding: 10px; margin: 10px 0; }
+        #sendButton { padding: 10px 20px; }
+        #chatbotResponse { margin-top: 20px; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>دستیار هوشمند اطلاع‌رسانی آتی</h1>
+        <input type="text" id="userInput" placeholder="سوال خود را بپرسید">
+        <button id="sendButton">ارسال</button>
+        <div id="chatbotResponse"></div>
+    </div>
+
+    <script>
+        async function init() {
+            // بارگذاری توکنایزر
+            const { AutoTokenizer } = Xenova;
+            const tokenizer = await AutoTokenizer.from_pretrained('distilbert-fa-zwnj-base');
+
+            // بارگذاری مدل
+            const model = await tf.loadGraphModel('model.json');
+
+            // بارگذاری داده‌ها
+            const response = await fetch('fulldata.json');
+            const data = await response.json();
+            const faqs = data.staticFaqData.faqs;
+
+            // پیش‌محاسبه امبدینگ‌های FAQ
+            const faqEmbeddings = [];
+            const max_length = 128;
+
+            for (const faq of faqs) {
+                const tokenized = tokenizer(faq.question, { padding: true, truncation: true, max_length: max_length });
+                const inputIds = tf.tensor(tokenized.input_ids, [1, max_length], 'int32');
+                const attentionMask = tf.tensor(tokenized.attention_mask, [1, max_length], 'int32');
+
+                const output = model.predict({ input_ids: inputIds, attention_mask: attentionMask });
+                const embedding = output.slice([0, 0, 0], [1, 1, -1]).squeeze();
+                const normalizedEmbedding = tf.linalg.normalize(embedding, 0)[0];
+                faqEmbeddings.push(normalizedEmbedding);
+
+                // آزادسازی حافظه
+                inputIds.dispose();
+                attentionMask.dispose();
+                output.dispose();
+                embedding.dispose();
+            }
+
+            // تنظیم رویداد برای دکمه ارسال
+            document.getElementById('sendButton').addEventListener('click', async () => {
+                const userQuestion = document.getElementById('userInput').value;
+                if (!userQuestion) return;
+
+                const tokenizedUser = tokenizer(userQuestion, { padding: true, truncation: true, max_length: max_length });
+                const userInputIds = tf.tensor(tokenizedUser.input_ids, [1, max_length], 'int32');
+                const userAttentionMask = tf.tensor(tokenizedUser.attention_mask, [1, max_length], 'int32');
+
+                const userOutput = model.predict({ input_ids: userInputIds, attention_mask: userAttentionMask });
+                const userEmbedding = userOutput.slice([0, 0, 0], [1, 1, -1]).squeeze();
+                const normalizedUserEmbedding = tf.linalg.normalize(userEmbedding, 0)[0];
+
+                // محاسبه شباهت‌ها
+                let maxSimilarity = -1;
+                let bestFaqIndex = -1;
+
+                for (let i = 0; i < faqEmbeddings.length; i++) {
+                    const similarity = tf.dot(normalizedUserEmbedding, faqEmbeddings[i]).dataSync()[0];
+                    if (similarity > maxSimilarity) {
+                        maxSimilarity = similarity;
+                        bestFaqIndex = i;
+                    }
+                }
+
+                // نمایش پاسخ
+                const answer = faqs[bestFaqIndex].answer;
+                document.getElementById('chatbotResponse').innerHTML = answer;
+
+                // آزادسازی حافظه
+                userInputIds.dispose();
+                userAttentionMask.dispose();
+                userOutput.dispose();
+                userEmbedding.dispose();
+                normalizedUserEmbedding.dispose();
+            });
+        }
+
+        // اجرا هنگام بارگذاری صفحه
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

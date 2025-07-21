@@ -1,0 +1,41 @@
+{
+  "tours": [
+    {
+      "title": "تور برزیل 25 روزه",
+      "country": "برزیل",
+      "month": "شهریور",
+      "start_date": "1404-06-14",
+      "duration": "25 روز",
+      "price": "140 میلیون",
+      "url": "https://www.atitravel.ir/tour/brazil2025/"
+    },
+    {
+      "title": "تور ریودوژانیرو",
+      "country": "برزیل",
+      "month": "شهریور",
+      "start_date": "1404-06-26",
+      "duration": "12 روز",
+      "price": "95 میلیون",
+      "url": "https://www.atitravel.ir/tour/rio"
+    },
+    {
+      "title": "تور ایتالیا کلاسیک",
+      "country": "ایتالیا",
+      "month": "مرداد",
+      "start_date": "1404-05-10",
+      "duration": "10 روز",
+      "price": "120 میلیون",
+      "url": "https://www.atitravel.ir/tour/italy"
+    },
+    {
+      "title": "تور پاریس فرانسه",
+      "country": "فرانسه",
+      "month": "آبان",
+      "start_date": "1404-08-18",
+      "duration": "7 روز",
+      "price": "110 میلیون",
+      "description": "تور پاییزی فرانسه همراه با بازدید از برج ایفل و موزه لوور",
+      "url": "https://www.atitravel.ir/tour/paris"
+    }
+  ]
+}
