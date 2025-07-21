@@ -399,12 +399,12 @@
             
             try {
                 [model, tokenizer] = await Promise.all([
-                    tf.loadGraphModel('https://github.com/mhycoding/my-atitravel/models/tfjs_model_quantized/model.json', {
+                    tf.loadGraphModel('https://raw.githubusercontent.com/mhycoding/my-atitravel/main/models/tfjs_model_quantized/model.json', {
                         onProgress: (progress) => {
                             const percent = (progress * 100).toFixed(1);
                         }
                     }),
-                    AutoTokenizer.from_pretrained('https://github.com/mhycoding/my-atitravel/models/local_tokenizer/')
+                    AutoTokenizer.from_pretrained('local_tokenizer', { local_files_only: true })
                 ]);
 
                 console.log("مدل و توکنایزر با موفقیت بارگذاری شدند.");
@@ -540,7 +540,7 @@
 
         // بارگذاری داده‌ها از فایل JSON
         function loadDataFromJSON() {
-            return fetch('https://github.com/mhycoding/my-atitravel/blob/main/fulldata.json')
+            return fetch('https://raw.githubusercontent.com/mhycoding/my-atitravel/blob/main/fulldata.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
