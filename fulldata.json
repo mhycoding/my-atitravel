@@ -767,7 +767,7 @@
                     "شیراز"
                 ],
                 "category": "تورهای داخلی",
-                "location": "شیراز، مشهد",
+                "location": "شیراز",
                 "duration" : "4 روز",
                 "price": "قیمت موجود نیست"
             },
@@ -780,17 +780,6 @@
                 ],
                 "category": "تورهای داخلی",
                 "location": "کرمان",
-                "duration" : "4 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
-                "question": "تهران",
-                "answer": "<a href='https://www.atitravel.ir/tour/tehran' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "تهران"
-                ],
-                "category": "تورهای داخلی",
-                "location": "تهران، مشهد",
                 "duration" : "4 روز",
                 "price": "قیمت موجود نیست"
             },
@@ -812,7 +801,7 @@
                     "یزد"
                 ],
                 "category": "تورهای داخلی",
-                "location": "یزد، مشهد",
+                "location": "یزد",
                 "duration" : "4 روز",
                 "price": "قیمت موجود نیست"
             },
@@ -823,7 +812,7 @@
                     "بندرعباس"
                 ],
                 "category": "تورهای داخلی",
-                "location": "بندرعباس، مشهد",
+                "location": "بندرعباس",
                 "duration" : "4 روز",
                 "price": "قیمت موجود نیست"
             },
@@ -841,6 +830,24 @@
                 "location": "کیش ( ایران )",    
                 "duration" : "4 روز",
                 "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "مشهد",
+                "answer": "گزینه مورد نظر خود را انتخاب کنید",
+                "keywords": ["مشهد"],
+                "category": "",
+                "sub_options": [
+                    {"question": "درباره پروازهای داخلی سوال دارم", "answer": "<ul> می‌توانید با برقراری تماس تلفنی یا به صورت مستقیم از طریق لینک زیر اقدام به خرید بلیط هواپیما برای کلیه مسیرهای داخلی کنید.<li><a href='tel:+985138808102' target='_blank' class='phone-item'> <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۲</span><span class='icon'>📞</span></a></li><li><a href='tel:+985138808103' target='_blank' class='phone-item'>  <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۳</span><span class='icon'>📞</span></a></li><li><a href='https://www.atitravel.ir/internalflight/' target='_blank' rel='noopener noreferrer'>رزرو بلیط پروازهای داخلی</a></li></ul>"}
+                ]
+            },
+            {
+                "question": "تهران",
+                "answer": "گزینه مورد نظر خود را انتخاب کنید",
+                "keywords": ["تهران"],
+                "category": "",
+                "sub_options": [
+                    {"question": "درباره پروازهای داخلی سوال دارم", "answer": "<ul> می‌توانید با برقراری تماس تلفنی یا به صورت مستقیم از طریق لینک زیر اقدام به خرید بلیط هواپیما برای کلیه مسیرهای داخلی کنید.<li><a href='tel:+985138808102' target='_blank' class='phone-item'> <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۲</span><span class='icon'>📞</span></a></li><li><a href='tel:+985138808103' target='_blank' class='phone-item'>  <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۳</span><span class='icon'>📞</span></a></li><li><a href='https://www.atitravel.ir/internalflight/' target='_blank' rel='noopener noreferrer'>رزرو بلیط پروازهای داخلی</a></li></ul>"}
+                ]
             }
         ],
         "هتل‌های خارجی": [
@@ -1046,194 +1053,160 @@
         ],
         "هتل‌های داخلی": [
             {
-                "question": "هتل هتل درویشی مشهد در مشهد",
+                "question": " هتل درویشی مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل درویشی مشهد' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "درویشی",
-                    "مشهد"
+                    "هتل درویشی مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل پردیسان مشهد در مشهد",
+                "question": " هتل پردیسان مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='هتل پردیسان مشهد' width='150'><br>امتیاز: 8.5",
                 "keywords": [
-                    "پردیسان",
-                    "مشهد",
-                    "مشهد"
+                    "هتل پردیسان مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 8.5"
             },
             {
-                "question": "هتل هتل مدینه الرضا مشهد در مشهد",
+                "question": " هتل مدینه الرضا مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل مدینه الرضا مشهد' width='150'><br>امتیاز: 5",
                 "keywords": [
-                    "مدینه",
-                    "الرضا",
-                    "مشهد",
-                    "مشهد"
+                    "هتل مدینه الرضا مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 5"
             },
             {
-                "question": "هتل هتل قصر الضیافه مشهد در مشهد",
+                "question": " هتل قصر الضیافه مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='هتل قصر الضیافه مشهد' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "قصر",
-                    "الضیافه",
-                    "مشهد",
-                    "مشهد"
+                    "هتل قصر الضیافه مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل قصر طلایی مشهد در مشهد",
+                "question": " هتل قصر طلایی مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل قصر طلایی مشهد' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "قصر",
-                    "طلایی",
-                    "مشهد",
-                    "مشهد"
+                    "هتل قصر طلایی مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل کوثر مشهد در مشهد",
+                "question": "هتل کوثر مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل کوثر مشهد' width='150'><br>امتیاز: 8.5",
                 "keywords": [
-                    "کوثر",
-                    "مشهد",
-                    "مشهد"
+                    "هتل کوثر مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 8.5"
             },
             {
-                "question": "هتل هتل هما مشهد در مشهد",
+                "question": "هتل هما مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل هما مشهد' width='150'><br>امتیاز: 5",
                 "keywords": [
-                    "هما",
-                    "مشهد",
-                    "مشهد"
+                    "هتل هما مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 5"
             },
             {
-                "question": "هتل هتل الماس مشهد در مشهد",
+                "question": " هتل الماس مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل الماس مشهد' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "الماس",
-                    "مشهد",
-                    "مشهد"
+                    "هتل الماس مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل جواد مشهد در مشهد",
+                "question": " هتل جواد مشهد",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg/Themes/AtiTravel/UI/Dist/images/Temp/5.jpg' alt='هتل جواد مشهد' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "جواد",
-                    "مشهد",
-                    "مشهد"
+                    "هتل جواد مشهد"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "مشهد",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل استقلال تهران در تهران",
+                "question": "هتل استقلال تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل استقلال تهران' width='150'><br>امتیاز: 5",
                 "keywords": [
-                    "استقلال",
-                    "تهران",
-                    "تهران"
+                    "هتل استقلال تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
                 "score": "امتیاز 5"
             },
             {
-                "question": "هتل هتل اسپیناس تهران در تهران",
+                "question": " هتل اسپیناس تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل اسپیناس تهران' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "اسپیناس",
-                    "تهران",
-                    "تهران"
+                    "هتل اسپیناس تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل هما تهران در تهران",
+                "question": "هتل هما تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل هما تهران' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "هما",
-                    "تهران",
-                    "تهران"
+                    "هتل هما تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل آزادی تهران در تهران",
+                "question": " هتل آزادی تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل آزادی تهران' width='150'><br>امتیاز: 8.5",
                 "keywords": [
-                    "آزادی",
-                    "تهران",
-                    "تهران"
+                    "هتل آزادی تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
                 "score": "امتیاز 8.5"
             },
             {
-                "question": "هتل هتل انقلاب تهران در تهران",
+                "question": "هتل انقلاب تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='هتل انقلاب تهران' width='150'><br>امتیاز: 5",
                 "keywords": [
-                    "انقلاب",
-                    "تهران",
-                    "تهران"
+                    "هتل انقلاب تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
                 "score": "امتیاز 5"
             },
             {
-                "question": "هتل هتل اوین تهران در تهران",
+                "question": "هتل اوین تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل اوین تهران' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "اوین",
-                    "تهران",
-                    "تهران"
+                    "هتل اوین تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
                 "score": "امتیاز 6.3"
             },
             {
-                "question": "هتل هتل بزرگ تهران در تهران",
+                "question": "هتل بزرگ تهران",
                 "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل بزرگ تهران' width='150'><br>امتیاز: 6.3",
                 "keywords": [
-                    "بزرگ",
-                    "تهران",
-                    "تهران"
+                    "هتل بزرگ تهران"
                 ],
                 "category": "هتل‌های داخلی",
                 "location": "تهران",
