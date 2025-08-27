@@ -1419,10 +1419,28 @@
                 "question": "راهنمای سفر به سوییس",
                 "answer": "<a href='https://www.atitravel.ir/blog/2025/7/31/130337/%d8%b3%d9%88%db%8c%d8%b3/' target='_blank'>مشاهده مقاله سوییس</a>",
                 "keywords": [
-                    "سوییس"
+                    "سوئیس"
                 ],
                 "category": "مقالات",
                 "link": "https://www.atitravel.ir/blog/2025/7/31/130337/%d8%b3%d9%88%db%8c%d8%b3/"
+            },
+            {
+                "question": "راهنمای سفر به عمان",
+                "answer": "<a href='https://www.atitravel.ir/blog/2025/7/2/130333/%d8%b9%d9%85%d8%a7%d9%86/' target='_blank'>مشاهده مقاله عمان</a>",
+                "keywords": [
+                    "عمان"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/blog/2025/7/2/130333/%d8%b9%d9%85%d8%a7%d9%86/"
+            },
+            {
+                "question": "راهنمای سفر به فرانسه",
+                "answer": "<a href='https://www.atitravel.ir/blog/2025/7/29/130334/%d9%81%d8%b1%d8%a7%d9%86%d8%b3%d9%87/' target='_blank'>مشاهده مقاله فرانسه</a>",
+                "keywords": [
+                    "فرانسه"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/blog/2025/7/29/130334/%d9%81%d8%b1%d8%a7%d9%86%d8%b3%d9%87/"
             }
         ]
     },
