@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
@@ -9,14 +11,15 @@ import time
 import os
 
 # تنظیمات اولیه درایور
-# استفاده از مسیر نسبی برای chromedriver.exe
-script_dir = os.path.dirname(__file__)
-chromedriver_path = os.path.join(script_dir, 'chromedriver-win64', 'chromedriver.exe')
-service = Service(chromedriver_path)
-options = webdriver.ChromeOptions()
-# برای بررسی بهتر خطاها headless رو موقتا غیرفعال کن
-options.add_argument("--headless=new")
-driver = webdriver.Chrome(service=service, options=options)
+# تنظیمات Chrome
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # برای اجرای بدون界面
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+# استفاده از ChromeDriver Manager برای دانلود خودکار chromedriver
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def extract_keywords(text):
     stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از"}
@@ -341,3 +344,4 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
