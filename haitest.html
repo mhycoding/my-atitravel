@@ -1,546 +1,402 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html dir="rtl" lang="fa" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دستیار هوشمند آتی</title>
     <style>
         #userContainer{
-            margin-bottom: 10px !important;
-            margin-right: auto !important;
+        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+        margin-right: auto !important;
         }
 
-        #botContainer{
-            margin-bottom: 10px !important;
-        }
-        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+        margin: 0;
+        padding: 0;
         }
 
         .chat-icon {
-            width: 90px;
-            height: 90px;
-            background-color: #FDB915;
-            border-radius: 50%;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transition: all 0.3s ease;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 20px;
+        left: 30px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 24px;
+
+        z-index: 1000;
+        transition: all 0.3s ease;
         }
 
         .chat-icon:hover {
-            transform: scale(1.1);
+        transform: scale(1.1);
         }
 
-        .chat-icom-img{
-            transform: scale(2);
+        .chat-icon-img{
+        transform: scale(0.35);
+        padding-top:6px;
         }
 
         .chat-container {
-            width: 0;
-            height: 0;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            bottom: 90px;
-            right: 30px;
-            overflow: hidden;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
+        width: 0;
+        height: 0;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 90px;
+        left: 30px;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1000;
         }
 
         .chat-container.expanded {
-            width: 400px;
-            height: 500px;
-            opacity: 1;
+        width: 400px;
+        height: 500px;
+        opacity: 1;
         }
 
         .chat-header {
-            background-color: #FDB915;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        background-color: #FDB915;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         }
 
         .chat-header h1 {
-            margin: 0;
-            font-size: 1.2em;
+        margin: 0;
+        font-size: 1.2em;
         }
 
         .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2em;
-            cursor: pointer;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2em;
+        cursor: pointer;
         }
 
         @media (max-width:768px) {
-            .chat-container.expanded {
-                height: 60%;
-                max-width: 85vw;
-            }
-            ul, li {
-                list-style-type: none;
-                padding-right: 4px;
-                padding: 1px;
-            }
-            li li a {
-                padding: 10px;
-            }
-            .chat-icom-img {
-                transform: scale(1);
-            }
-            .chat-icon {
-                width: 60px;
-                height: 60px;
-            }
+        .chat-container.expanded {
+        height: 60%;
+        max-width: 85vw;
+        }
+        ul, li {
+        list-style-type: none;
+        padding-right: 4px;
+        padding: 1px;
+        }
+        li li a {
+        padding: 10px;
+        }
+        .chat-icon-img {
+        transform: scale(1);
+        }
+        .chat-icon {
+        width: 60px;
+        height: 60px;
+        }
         }
 
         .chat-body {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
         }
 
         .clarification-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 10px 0;
-            margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 0;
+        margin-top: 10px;
         }
 
         .chat-footer {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #eee;
-            background-color: white;
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #eee;
+        background-color: white;
         }
 
         #userInput {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            outline: none;
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
         }
 
         #sendButton {
-            margin-right: 10px;
-            padding: 10px 15px;
-            background-color: #FDB915;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        margin-right: 10px;
+        padding: 10px 15px;
+        background-color: #FDB915;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
         }
 
         #sendButton:hover {
-            background-color: #102369;
+        background-color: #102369;
         }
 
         .clarification-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        font-size: 0.9em;
+        transition: background-color 0.2s;
         }
 
         .clarification-btn:hover {
-            background-color: #e0e0e0;
+        background-color: #e0e0e0;
         }
 
         .confirmation-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 5px;
         }
 
         .confirmation-btn {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #f0f0f0;
+        padding: 8px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f0f0f0;
         }
 
         .confirmation-btn:hover {
-            background-color: #e0e0e0;
+        background-color: #e0e0e0;
         }
 
         .bot-message,
         .user-message {
-            padding: 8px 12px;
-            margin-bottom: 10px !important;
-            border-radius: 5px;
-            max-width: 80%;
-            font-size: 0.9em;
-            word-wrap: break-word;
+        padding: 8px 12px;
+        margin-bottom: 10px !important;
+        border-radius: 5px;
+        max-width: 80%;
+        font-size: 0.9em;
+        word-wrap: break-word;
         }
 
         .bot-message {
-            background-color: #e0e0e0;
-            margin-left: auto;
+        background-color: #e0e0e0;
+        margin-left: auto;
         }
 
         .user-message {
-            background-color: #102369;
-            color: white;
-            margin-right: auto !important;
+        background-color: #102369;
+        color: white;
+        margin-right: auto !important;
         }
 
         .typing-indicator {
-            display: inline-block;
-            padding: 8px 12px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            margin-left: auto;
-            margin-bottom: 10px;
+        display: inline-block;
+        padding: 8px 12px;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        margin-left: auto;
+        margin-bottom: 10px;
         }
 
         .typing-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: #888;
-            margin: 0 2px;
-            animation: typingAnimation 1.4s infinite ease-in-out;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #888;
+        margin: 0 2px;
+        animation: typingAnimation 1.4s infinite ease-in-out;
         }
 
         .typing-dot:nth-child(1) {
-            animation-delay: 0s;
+        animation-delay: 0s;
         }
 
         .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
+        animation-delay: 0.2s;
         }
 
         .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
+        animation-delay: 0.4s;
         }
 
         @keyframes typingAnimation {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-3px);
-            }
+        0%, 60%, 100% {
+        transform: translateY(0);
+        }
+        30% {
+        transform: translateY(-3px);
+        }
         }
 
         .bot-message a {
-            color: #0066cc;
-            text-decoration: underline;
+        color: #0066cc;
+        text-decoration: underline;
         }
 
         .bot-message a:hover {
-            color: #004499;
+        color: #004499;
         }
 
         ul, li {
-            list-style-type: none;
-            padding-right: 10px;
+        list-style-type: none;
+        padding-right: 10px;
         }
-        
+
         li li a {
-            padding: 10px;
+        padding: 10px;
         }
-        
+
         .phone-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
         }
-        
+
         .number {
-            direction: ltr;
-            unicode-bidi: isolate;
-            display: inline;
-            margin-right: 50px;
+        direction: ltr;
+        unicode-bidi: isolate;
+        display: inline;
+        margin-right: 50px;
         }
 
         .accordion {
-            margin-bottom: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .accordion-header {
-            background-color: #f0f0f0;
-            color: rgb(22, 2, 2);
-            padding: 12px 15px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background-color 0.3s;
+        background-color: #f0f0f0;
+        color: rgb(22, 2, 2);
+        padding: 12px 15px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s;
         }
 
         .accordion-header:hover {
-            background-color: #e0e0e0;
+        background-color: #e0e0e0;
         }
 
         .accordion-header::after {
-            content: '+';
-            font-size: 1.2em;
-            transition: transform 0.3s;
+        content: '+';
+        font-size: 1.2em;
+        transition: transform 0.3s;
         }
 
         .accordion-header.active::after {
-            content: '-';
+        content: '-';
         }
 
         .accordion-content {
-            background-color: #f9f9f9;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 15px;
+        background-color: #f9f9f9;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        padding: 0 15px;
         }
 
         .accordion-content.show {
-            padding: 15px;
-            max-height: 1000px;
-            border: 1px solid #ddd;
-            border-top: none;
+        padding: 15px;
+        max-height: 1000px;
+        border: 1px solid #ddd;
+        border-top: none;
         }
 
         .tour-list {
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
         }
 
         .tour-item {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
+        padding: 8px;
+        border-bottom: 1px solid #eee;
         }
 
         .tour-item:last-child {
-            border-bottom: none;
+        border-bottom: none;
         }
 
         .price-tag {
-            background-color: #FDB915;
-            color: white;
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-right: 5px;
+        background-color: #FDB915;
+        color: white;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-size: 0.8em;
+        margin-right: 5px;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-</head>
-<body>
-    <div class="chat-icon" id="chatIcon"><span class="chat-icom-img">💬</span></div>
-
+ </head>
+ <body>
+    <div class="chat-icon" id="chatIcon"><span class="chat-icon-img"><img src="p1.png"></span></div>
     <div class="chat-container" id="chatContainer">
-        <div class="chat-header">
-            <h1>دستیار هوشمند اطلاع رسانی آتی</h1>
-            <button class="close-btn" id="closeBtn">×</button>
-        </div>
-        <div class="chat-body" id="chatBody"></div>
-        <div class="chat-footer">
-            <input type="text" id="userInput" placeholder="سوال خود را بنویسید...">
-            <button id="sendButton">ارسال</button>
-        </div>
+    <div class="chat-header">
+    <h1>راهنمای هوشمند آتی</h1>
+    <button class="close-btn" id="closeBtn">&times;</button></div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-footer"><input type="text" id="userInput" placeholder="سوال خود را بنویسید..." /> <button id="sendButton">ارسال</button></div>
     </div>
 
-    <script type="module">
-        import { AutoTokenizer } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2";
-
-        // مدل و توکنایزر
-        let model;
-        let tokenizer;
-        let faqEmbeddings = [];
-        let isModelLoading = false;
-
-        // بارگذاری مدل TensorFlow.js و توکنایزر
-        async function loadModel() {
-            if (isModelLoading || model) return;
-            isModelLoading = true;
-            
-            try {
-                [model, tokenizer] = await Promise.all([
-                    tf.loadGraphModel('https://raw.githubusercontent.com/mhycoding/my-atitravel/main/models/tfjs_model_quantized/model.json', {
-                        onProgress: (progress) => {
-                            const percent = (progress * 100).toFixed(1);
-                        }
-                    }),
-                    AutoTokenizer.from_pretrained('local_tokenizer', { local_files_only: true })
-                ]);
-
-                console.log("مدل و توکنایزر با موفقیت بارگذاری شدند.");
-                aiModelLoaded = true;
-              
-            } catch (error) {
-                console.error("خطا در بارگذاری مدل یا توکنایزر:", error);
-                aiModelLoaded = false;
-            } finally {
-                isModelLoading = false;
-            }
-        }
-
-
-        // تولید امبدینگ برای یک متن
-        async function getEmbedding(text) {
-            if (!model || !tokenizer) return null;
-
-            const max_length = 64; // کاهش طول برای عملکرد بهتر در مرورگر
-            const tokenized = tokenizer(text, { padding: 'max_length', truncation: true, max_length: max_length });
-            
-            const inputIds = tf.tensor(tokenized.input_ids.tolist(), [1, max_length], 'int32');
-            const attentionMask = tf.tensor(tokenized.attention_mask.tolist(), [1, max_length], 'int32');
-
-            const output = await model.execute({ 'input_ids': inputIds, 'attention_mask': attentionMask });
-            // The output can be a tensor or a map of tensors. For BERT-like models, we expect 'last_hidden_state'.
-            const outputTensor = output['last_hidden_state'] || (Array.isArray(output) ? output[0] : output);
-
-            // We take the embedding of the [CLS] token, which is the first one.
-            const embedding = outputTensor.slice([0, 0, 0], [1, 1, -1]).squeeze();
-            
-            // Debugging: Log embedding values before normalization
-            const embeddingValues = embedding.dataSync();
-            
-            const normalizedEmbedding = tf.tidy(() => {
-                const norm = embedding.norm();
-                // Avoid division by zero
-                if (norm.dataSync()[0] === 0) {
-                    return embedding; 
-                }
-                return embedding.div(norm);
-            });
-
-            // آزادسازی حافظه
-            inputIds.dispose();
-            attentionMask.dispose();
-            if (output !== outputTensor) output.dispose();
-            outputTensor.dispose();
-            embedding.dispose();
-
-            return normalizedEmbedding;
-        }
-
-        // تحلیل سوال با مدل و یافتن بهترین پاسخ از FAQ
-        async function analyzeWithAI(question) {
-            if (!aiModelLoaded || faqEmbeddings.length === 0) {
-                return null;
-            }
-
-            const questionEmbedding = await getEmbedding(question);
-            if (!questionEmbedding) return null;
-
-            let bestMatch = { score: -1, faq: null };
-
-            // Using tf.tidy to manage memory of intermediate tensors
-            tf.tidy(() => {
-                for (const faqItem of faqEmbeddings) {
-                    const similarity = tf.dot(questionEmbedding, faqItem.embedding).dataSync()[0];
-                    
-                    // Debugging: Log similarity score
-                    if (isNaN(similarity)) {
-                    }
-
-                    if (similarity > bestMatch.score) {
-                        bestMatch = { score: similarity, faq: faqItem.faq };
-                    }
-                }
-            });
-
-            questionEmbedding.dispose();
-
-            // یک آستانه برای شباهت تعیین می‌کنیم
-            const SIMILARITY_THRESHOLD = 0.75; // کاهش آستانه برای افزایش حساسیت مدل
-            if (bestMatch.score > SIMILARITY_THRESHOLD) {
-                return bestMatch.faq;
-            }
-            return null;
-        }
-
-        // تشخیص قصد کاربر (ساده‌شده)
-        function detectIntent(embedding) {
-            return "general_query";
-        }
-
-        // استخراج موجودیت‌ها (ساده‌شده)
-        function extractEntities(question) {
-            const entities = [];
-            
-            // تشخیص کشورها
-            const countries = [
-                "چین"," گرجستان"," عمان"," امارات"," ترکیه",
-                " هند"," سریلانکا"," ویتنام"," فیلیپین"," کره جنوبی" ,
-                " ژاپن","سوئیس"," هلند", "روسیه"," فرانسه", "ایتالیا",
-                " آلمان"," لهستان", "انگلستان"," اسپانیا"," پرتغال",
-                " بلژیک"," اتریش"," چک"," سوئد "," فنلاند","برزیل"," کانادا"
-            ]
-            countries.forEach(country => {
-                if (question.includes(country)) {
-                    entities.push({
-                        type: "country",
-                        value: country
-                    });
-                }
-            });
-
-            // تشخیص مقاصد
-            if (question.includes("تور") || question.includes("سفر")) {
-                entities.push({
-                    type: "intent",
-                    value: "tour_inquiry"
-                });
-            }
-            return entities;
-        }
-
-        let combinedFaqs = [];
+ <script>
+        // Global variables
         let staticFaqData = {};
         let externalFaqData = {};
         let continentsData = {};
-        let months ={};
-        let aiModelLoaded = false;
+        let months = {};
         let smallTalk = {};
+        let combinedFaqs = [];
+        let isDataLoaded = false;
+        let globalContext  = { tours:[] }
 
-        // بارگذاری داده‌ها از فایل JSON
+        // OpenRouter API configuration
+        const OPENROUTER_API_KEY = "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";
+        const OPENROUTER_MODELS = [         
+            "qwen/qwen2.5-vl-32b-instruct:free",
+            "qwen/qwen3-8b:free",
+            "deepseek/deepseek-chat-v3.1:free",
+            "tngtech/deepseek-r1t2-chimera:free",
+            "qwen/qwen3-235b-a22b:free",
+            "qwen/qwen3-30b-a3b:free",
+            "moonshotai/kimi-k2:free",
+            "meta-llama/llama-4-maverick:free",
+        ];
+
+        // Load data from JSON file
         function loadDataFromJSON() {
-            return fetch('https://raw.githubusercontent.com/mhycoding/my-atitravel/blob/main/fulldata.json')
+            return fetch('https://raw.githubusercontent.com/mhycoding/my-atitravel/refs/heads/main/fulldata.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -551,62 +407,68 @@
                     staticFaqData = data.staticFaqData;
                     externalFaqData = data.externalFaqData;
                     continentsData = data.continents;
-                    months = data.month
-                    smallTalk = data.smallTalk
-                    console.log("داده‌ها با موفقیت از فایل JSON بارگذاری شدند.");
+                    months = data.month;
+                    smallTalk = data.smallTalks;
+                    
+                    // Normalize smallTalk keys
+                    const normalizedSmallTalk = {};
+                    for (const key in smallTalk) {
+                        normalizedSmallTalk[normalizeText(key)] = smallTalk[key];
+                    }
+                    smallTalk = normalizedSmallTalk;
+                    
                     loadAndCombineData();
+                    isDataLoaded = true;
+                    console.log("داده‌ها با موفقیت از فایل JSON بارگذاری شدند.");
                 })
                 .catch(error => {
                     console.error('مشکل در بارگذاری فایل JSON:', error);
                 });
         }
 
-        // بارگذاری و ترکیب داده‌ها و محاسبه امبدینگ‌ها
-        async function loadAndCombineData() {
+        function loadAndCombineData() {
             let allFaqs = [...staticFaqData.faqs];
 
             for (const category in externalFaqData.faqs) {
                 allFaqs = allFaqs.concat(externalFaqData.faqs[category]);
             }
-            
+
             combinedFaqs = allFaqs;
             console.log("داده‌ها با موفقیت بارگذاری و ترکیب شدند.");
-
-            // منتظر می‌مانیم تا مدل بارگذاری شود
-            while (isModelLoading) {
-                await new Promise(resolve => setTimeout(resolve, 100));
-            }
-
-            if (aiModelLoaded) {     
-                const embeddingPromises = combinedFaqs.map(async (faq) => {
-                    const embedding = await getEmbedding(faq.question);
-                    if (embedding) {
-                        faqEmbeddings.push({ faq: faq, embedding: embedding });
-                    }
-                });               
-                await Promise.all(embeddingPromises);
-                console.log(`محاسبه امبدینگ برای ${faqEmbeddings.length} سوال به پایان رسید.`);
-            }
         }
-        // مترادف‌های کشورها
-        const countrySynonyms = {
-            "سوییس": "سوئیس",
-            "المان": "آلمان",
-            "امریکایی": "امریکا",
-            "اسیایی": "اسیا",
-            "اروپایی": "اروپا",
-            "هند": "هندوستان",
-            "انگلیس": "انگلستان",
-            "انکلیس": "انگلستان",
-            "کره": "کره جنوبی",
-            "ترابز": "ترابزون",
-            "روس": "روسیه",
-            "استانبول": "ترکیه",
-            "دبی": "امارات"
-        };
 
-        // اعمال مترادف‌ها
+        // Text normalization function
+        function normalizeText(text) {
+            const replacements = {
+                'ي': 'ی', 'ك': 'ک', 'ؤ': 'و', 'ئ': 'ی', 'ى': 'ی', 'آ':'ا',
+                'ۀ': 'ه', 'ة': 'ه', 'أ': 'ا', 'إ': 'ا', 'ٱ': 'ا', 'ٰ': 'ا'
+            };            
+            let normalized = text.trim();
+            
+            Object.keys(replacements).forEach(char => {
+                const regex = new RegExp(char, 'g');
+                normalized = normalized.replace(regex, replacements[char]);
+            });
+            
+            normalized = normalized.replace(/[\u064B-\u065F\u0670]/g, '');
+            return normalized.toLowerCase().replace(/\s+/g, '');
+        }
+
+        // Apply synonyms
         function applySynonyms(text) {
+            const countrySynonyms = {
+                "امریکایی": "امریکا",
+                "اسیایی": "اسیا",
+                "اروپایی": "اروپا",
+                "هند": "هندوستان",
+                "انگلیس": "انگلستان",
+                "انکلیس": "انگلستان",
+                "کره": "کره جنوبی",
+                "ترابز": "ترابزون",
+                "روس": "روسیه",
+                "استانبول": "ترکیه"
+            };
+            
             let processedText = text;
             for (const synonym in countrySynonyms) {
                 const regex = new RegExp(synonym, "g");
@@ -615,62 +477,385 @@
             return processedText;
         }
 
-        // نرمال‌سازی متن
-        function normalizeText(text) {
-            return text.trim().toLowerCase().replace(/\s+/g, '');
+        // Extract relevant context from fulldata.json based on user query
+        function extractRelevantContext(userQuestion) {
+            const normalizedQuestion = normalizeText(applySynonyms(userQuestion));
+            let context = {
+                tours: [],
+                faqs: [],
+                contacts: [],
+                articles: [],
+                smallTalk: null,
+            };
+
+            // Check for small talk - but exclude tour-related queries
+            if (!normalizedQuestion.includes('تور') && !normalizedQuestion.includes('سفر') && !normalizedQuestion.includes('پرواز') && !normalizedQuestion.includes('ویزا')) {
+                for (const key in smallTalk) {
+                    if (normalizedQuestion.includes(key)) {
+                        context.smallTalk = Array.isArray(smallTalk[key])
+                            ? smallTalk[key][Math.floor(Math.random() * smallTalk[key].length)]
+                            : smallTalk[key];
+                        return context;
+                    }
+                }
+            }
+
+            // Extract relevant tours
+            const allTours = [...(externalFaqData.faqs["تورهای خارجی"] || []), ...(externalFaqData.faqs["تورهای داخلی"] || [])];
+            context.tours = allTours.filter(tour => {
+                const tourKeywords = (tour.keywords || []).map(k => normalizeText(applySynonyms(k)));
+                const tourQuestion = normalizeText(applySynonyms(tour.question || ""));
+                const tourLocation = normalizeText(applySynonyms(tour.location || ""));
+                
+                return tourKeywords.some(kw => normalizedQuestion.includes(kw)) ||
+                       normalizedQuestion.includes(tourQuestion) ||
+                       normalizedQuestion.includes(tourLocation);
+            }).slice(0, 10); // Limit to top 10 relevant tours
+
+            // Extract relevant FAQs
+            context.faqs = staticFaqData.faqs.filter(faq => {
+                const faqKeywords = (faq.keywords || []).map(k => normalizeText(k));
+                const faqQuestion = normalizeText(faq.question || "");
+                
+                return faqKeywords.some(kw => normalizedQuestion.includes(kw)) ||
+                       normalizedQuestion.includes(faqQuestion);
+            }).slice(0, 5); // Limit to top 5 relevant FAQs
+
+            // Extract relevant travel guide articles if a country is mentioned
+            const allForeignCountries = Object.values(continentsData).flat().map(c => normalizeText(c.trim()));
+            const detectedCountry = allForeignCountries.find(country => normalizedQuestion.includes(country));
+
+            // Add contact information based on query type
+            if (normalizedQuestion.includes('تور') && normalizedQuestion.includes('خارج')) {
+                context.contacts.push({
+                    type: "تور خارجی",
+                    phones: ["۰۵۱-۳۸۸۰۸-۲۰۱", "۰۵۱-۳۸۸۰۸-۲۰۲"]
+                });
+            }
+            if (normalizedQuestion.includes('پرواز') && normalizedQuestion.includes('خارج')) {
+                context.contacts.push({
+                    type: "پرواز خارجی",
+                    phones: ["۰۵۱-۳۸۸۰۸-۸۱۰"]
+                });
+            }
+            if (normalizedQuestion.includes('ویزا')) {
+                context.contacts.push({
+                    type: "ویزا",
+                    phones: ["۰۵۱-۳۸۸۰۸-۵۰۱", "۰۵۱-۳۸۸۰۸-۵۰۳"]
+                });
+            }
+            if (normalizedQuestion.includes('قطار')) {
+                context.contacts.push({
+                    type: "قطار",
+                    phones: ["۰۵۱-۳۸۸۰۸-۱۰۱", "۰۵۱-۳۸۸۰۸-۵۰۵"]
+                });
+            }
+
+            // Extract relevant articles
+            if (externalFaqData.faqs["مقالات"]) {
+                context.articles = externalFaqData.faqs["مقالات"].filter(article => {
+                    const articleKeywords = (article.keywords || []).map(k => normalizeText(k));
+                    const articleQuestion = normalizeText(article.question || "");
+                    
+                    return articleKeywords.some(kw => normalizedQuestion.includes(kw)) ||
+                        normalizedQuestion.includes(articleQuestion);
+                }).slice(0, 3); // Limit to top 3 relevant articles
+            }
+
+            return context;
         }
 
-        // تشخیص انگلیسی بودن متن
+        // تابع تبدیل تاریخ میلادی به شمسی
+        function gregorianToJalali(gy, gm, gd) {
+            const g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+            let jy = (gy <= 1600) ? 0 : 979;
+            gy -= (gy <= 1600) ? 621 : 1600;
+            let gy2 = (gm > 2) ? (gy + 1) : gy;
+            let days = (365 * gy) + (parseInt((gy2 + 3) / 4)) - (parseInt((gy2 + 99) / 100)) 
+                + (parseInt((gy2 + 399) / 400)) - 80 + gd + g_d_m[gm - 1];
+            jy += 33 * (parseInt(days / 12053));
+            days %= 12053;
+            jy += 4 * (parseInt(days / 1461));
+            days %= 1461;
+            jy += parseInt((days - 1) / 365);
+            if (days > 365) days = (days - 1) % 365;
+            let jm = (days < 186) ? 1 + parseInt(days / 31) : 7 + parseInt((days - 186) / 30);
+            let jd = 1 + ((days < 186) ? (days % 31) : ((days - 186) % 30));
+            
+            return [jy, jm, jd];
+        }
+
+        // Build enhanced prompt for OpenRouter API
+        function buildEnhancedPrompt(userQuestion, context) {
+            const now = new Date();
+            const gregorianYear = now.getFullYear();
+            const gregorianMonth = now.getMonth() + 1;
+            const gregorianDay = now.getDate();
+            
+            // تبدیل تاریخ میلادی به شمسی
+            const persianDate = gregorianToJalali(gregorianYear, gregorianMonth, gregorianDay);
+            const persianYear = persianDate[0];
+            const persianMonth = persianDate[1];
+            const persianDay = persianDate[2];
+            const persianMonths = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
+            
+            let prompt = `تو دستیار هوشمند شرکت مسافرتی آتی هستی. به سوال کاربر پاسخ بده و از اطلاعات زیر استفاده کن:
+                تاریخ جاری: ماه ${persianMonths[persianMonth-1]}  سال ${persianYear} (ماه جاری: ${persianMonths[persianMonth-1]})
+                
+                سوال کاربر: "${userQuestion}"
+
+                `;
+
+            // Add small talk response if available
+            if (context.smallTalk) {
+                return context.smallTalk;
+            }
+
+            // Add tour information
+            if (context.tours.length > 0) {
+                prompt += `تورهای مرتبط:\n`;       
+                context.tours.forEach((tour, index) => {
+                    prompt += `
+                        <div class="clarification-buttons">
+                            <button class="clarification-btn" onclick="handleTourSelectionByIndex(${index})">
+                                ${tour.question}
+                            </button>
+                        </div>`;
+                });
+            }
+
+            // Add FAQ information
+            if (context.faqs.length > 0) {
+                prompt += `سوالات متداول مرتبط:\n`;
+                context.faqs.forEach(faq => {
+                    prompt += `- ${faq.question}\n  پاسخ: ${faq.answer}\n\n`;
+                });
+            }
+
+            // Add contact information
+            if (context.contacts.length > 0) {
+                prompt += `اطلاعات تماس:\n`;
+                context.contacts.forEach(contact => {
+                    prompt += `- ${contact.type}: ${contact.phones.join(', ')}\n`;
+                });
+            }
+
+            // Add article information
+            if (context.articles.length > 0) {
+                prompt += `<br><strong>مقالات مرتبط:</strong><br>`;
+                context.articles.forEach(article => {
+                    prompt += `- ${article.question}\n  لینک: ${article.link || article.answer}\n\n`;
+                });
+            } 
+
+            prompt += `
+                    دستورالعمل‌ها:
+                    1. پاسخ کوتاه و مفید بده
+                    2. اگر تور یا خدمت خاصی پیدا کردی، جزئیات آن را ارائه بده
+                    3. اگر نیاز به تماس هست، شماره تلفن مربوطه را بده
+                    4. اگر اطلاعات کافی نداری، کاربر را به تماس با پشتیبانی ۰۵۱-۳۸۸۰۸ راهنمایی کن
+                    5. پاسخت را به فارسی و مودبانه بده             
+                    6. مهم: اگر سوال در مورد تور است، ابتدا ماه جاری را محاسبه کن. اگر تاریخ تور قدیمی‌تر از ماه جاری است، آن تور را نمایش نده و فقط تورهای آینده یا جاری را نشان بده. در صورت عدم وجود تور مناسب، به سادگی بگو که "در حال حاضر توری موجود نیست" و تلفن واحد تور خارجی را پیشنهاد بده. توضیح نده که چرا تور قدیمی است یا جزئیات تاریخ مقایسه را ذکر نکن.
+                    7.   اگر بیشتر از یک تور پیدا کردی، آنها را به صورت دکمه‌های زیبا نمایش بده با استفاده از این فرمت:
+                        <div class="clarification-buttons">
+                            <button class="clarification-btn" onclick="handleTourSelectionByIndex(0)">عنوان تور</button>
+                        </div>       
+                    8. در جواب تورها فقط عنوان تور را در دکمه نشان بده و جزئیات دیگر را در تابع handleTourSelection مدیریت کن
+                    9. وقتی شماره تلفن یا لینک در جواب هست، آنها را با تگ های HTML زیبا فرمت کن:
+                    - برای تلفن: <a href="tel:+98شماره" class="phone-item"><span class="number">شماره</span><span class="icon">📞</span></a>
+                    - برای لینک: <a href="آدرس_لینک" target="_blank">متن لینک</a>
+                    - برای متن توضیحی: از تگ های <strong> و <br> برای فرمت بهتر استفاده کن
+                    10. مهم: پاسخت را تنها با یک جمله زیبا و مناسب به موضوع سوال خاتمه بده. از جملات تکراری یا غیرمرتبط مثل تبریک سفر به چین استفاده نکن. جمله پایانی باید مرتبط با موضوع سوال و خدمات شرکت آتی باشد.
+                    11. اگر نام کشور در سوال کاربر بود و مقاله مرتبطی وجود داشت، لینک مقاله را نمایش بده 
+                    12. مقالات را با فرمت زیبا نمایش بده: <br><a href="لینک" target="_blank" class="article-link">عنوان مقاله</a><br><br>   
+                    13. در جمله اولیه از جمله به شرکت مسافرتی آتی خوش آمدید استفاده نکن.
+                    14. اگر جمله اخرت ناقص موند ، لطفا از نمایش ان خودداری کن
+                    `;
+            return prompt;
+        }
+
+        // Call OpenRouter API with fallback models
+        async function callOpenRouterAPI(prompt) {
+            for (let i = 0; i < OPENROUTER_MODELS.length; i++) {
+                const model = OPENROUTER_MODELS[i];
+                try {
+                    console.log(`تلاش با مدل ${i + 1}: ${model}`);
+                    
+                    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            model: model,
+                            messages: [
+                                { role: "system", content: "تو یک دستیار فارسی مودب و دقیق هستی که برای شرکت مسافرتی آتی کار می‌کنی." },
+                                { role: "user", content: prompt }
+                            ],
+                            max_tokens: 500,
+                            temperature: 0.7
+                        })
+                    });
+
+                    if (response.status === 429) {
+                        console.log(`مدل ${model} محدودیت نرخ دارد، تلاش با مدل بعدی...`);
+                        continue; // Try next model
+                    }
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error(`خطا در مدل ${model}:`, errorText);
+                        continue; // Try next model
+                    }
+
+                    const data = await response.json();
+                    console.log(`پاسخ موفق از مدل: ${model}`);
+                    return data.choices[0].message.content;
+                    
+                } catch (error) {
+                    console.error(`خطا در فراخوانی مدل ${model}:`, error);
+                    if (i === OPENROUTER_MODELS.length - 1) {
+                        // This was the last model, return error message
+                        return "متاسفانه در حال حاضر مشکلی در سیستم وجود دارد. لطفاً با شماره ۰۵۱-۳۸۸۰۸ تماس بگیرید.";
+                    }
+                    // Continue to next model
+                }
+            }
+            
+            // If all models failed
+            throw new Error("All OpenRouter models failed or were unavailable.");
+        }
+        // Enhanced response processing
+        function enhanceResponse(apiResponse, context) {
+            let enhancedResponse = apiResponse;
+
+            // Complete incomplete sentences at the end
+            enhancedResponse = completeIncompleteResponse(enhancedResponse);
+
+            // Only add clickable phone numbers if they're not already formatted as HTML links
+            if (!enhancedResponse.includes('class="phone-item"') && !enhancedResponse.includes('href="tel:')) {
+                enhancedResponse = enhancedResponse.replace(
+                    /(\d{3}-\d{5}-\d{3}|\d{3}-\d{5}|\d{11})/g,
+                    '<a href="tel:+98$1" class="phone-item"><span class="number">$1</span><span class="icon">📞</span></a>'
+                );
+            }
+
+            // Add tour links if tours were mentioned
+            if (context.tours.length > 0) {
+                context.tours.forEach(tour => {
+                    if (tour.answer && tour.answer.includes('href')) {
+                        const linkMatch = tour.answer.match(/href='([^']+)'/);
+                        if (linkMatch) {
+                            const tourName = tour.question;
+                            const regex = new RegExp(tourName, 'gi');
+                            enhancedResponse = enhancedResponse.replace(
+                                regex,
+                                `<a href="${linkMatch[1]}" target="_blank">${tourName}</a>`
+                            );
+                        }
+                    }
+                });
+                
+            }
+            return enhancedResponse;
+        }
+
+        // Function to complete incomplete responses
+        function completeIncompleteResponse(response) {
+            // Remove HTML tags temporarily for analysis
+            const textOnly = response.replace(/<[^>]*>/g, '');
+            
+            // Check if the response ends with an incomplete sentence
+            const lastSentence = textOnly.trim();
+            
+            // Common incomplete endings and their completions
+            const completions = {
+                'خاط': 'خاطره‌انگیز و لذت‌بخشی داشته باشید.',
+                'امیدوار': 'امیدوارم که تور شما خاطره‌انگیز و لذت‌بخش باشد.',
+                'امیدوارم که تور شما خاط': 'امیدوارم که تور شما خاطره‌انگیز و لذت‌بخش باشد.',
+                'ممنون از اعتماد شما و امیدوارم که تور شما خاط': 'ممنون از اعتماد شما و امیدوارم که تور شما خاطره‌انگیز و لذت‌بخش باشد.'
+            };
+            
+            // Check for incomplete endings
+            for (const incomplete in completions) {
+                if (lastSentence.endsWith(incomplete)) {
+                    return response.replace(incomplete, completions[incomplete]);
+                }
+            }
+            
+            // Check if response ends abruptly without proper punctuation
+            if (!lastSentence.match(/[.!?؟]$/)) {
+                // If it's clearly an incomplete sentence about tours or gratitude
+                if (lastSentence.includes('تور') || lastSentence.includes('ممنون') || lastSentence.includes('امیدوار')) {
+                    return response;
+                }
+            }
+            
+            return response;
+        }
+
+        // Static logic functions from chat.html for fallback
         function isEnglish(text) {
             return /[a-zA-Z]/.test(text);
         }
 
-        // تحلیل تورها بر اساس معیارهای مختلف
-        function analyzeTours(question) {
-            const allTours = [...externalFaqData.faqs["تورهای خارجی"], ...externalFaqData.faqs["تورهای داخلی"]];
+        function analyzeTours(question, currencyRates) {
+            const allTours = [...(externalFaqData.faqs["تورهای خارجی"] || []), ...(externalFaqData.faqs["تورهای داخلی"] || [])];
             let filteredTours = allTours;
             const questionWithSynonyms = applySynonyms(question);
+            const normalizedQuestion = normalizeText(questionWithSynonyms);
 
             // --- بخش تحلیل پیشرفته ---
-            const foundContinents = Object.keys(continentsData).filter(c => questionWithSynonyms.includes(c));
+            const allCountries = Object.values(continentsData).flat().map(c => normalizeText(applySynonyms(c)));
+            const foundCountry = allCountries.find(country => normalizedQuestion.includes(country));
+            const foundContinents = Object.keys(continentsData).filter(c => normalizedQuestion.includes(c));
             const foundMonths = Object.keys(months).filter(month => question.includes(month));
 
+            const hasCountry = !!foundCountry;
             const hasContinent = foundContinents.length > 0;
             const hasMonth = foundMonths.length > 0;
 
-            if (hasContinent || hasMonth) {
-                if (hasContinent) {
-                    const targetCountries = foundContinents.flatMap(c => continentsData[c].map(country => applySynonyms(country.trim())));
+            if (hasCountry || hasContinent || hasMonth) {
+                if (hasCountry) {
+                    // Priority to specific country
                     filteredTours = filteredTours.filter(tour => {
-                        const tourKeywords = (tour.keywords || []).map(k => applySynonyms(k.trim()));
-                        const questionWords = (tour.question || "").split(/[\s()،,]+/).map(w => applySynonyms(w.trim()));
-                        const tourElements = [...new Set([...tourKeywords, ...questionWords])];
-                        return tourElements.some(element => targetCountries.includes(element));
+                        const tourKeywords = (tour.keywords || []).map(k => normalizeText(applySynonyms(k)));
+                        const questionText = normalizeText(applySynonyms(tour.question || ""));
+                        return tourKeywords.includes(foundCountry) || questionText.includes(foundCountry);
+                    });
+                } else if (hasContinent) {
+                    // Fallback to continent
+                    const targetCountries = foundContinents.flatMap(c => continentsData[c].map(country => normalizeText(applySynonyms(country))));
+                    filteredTours = filteredTours.filter(tour => {
+                        const tourKeywords = (tour.keywords || []).map(k => normalizeText(applySynonyms(k)));
+                        const questionText = normalizeText(applySynonyms(tour.question || ""));
+                        const tourElements = [...new Set([...tourKeywords, questionText])];
+                        return tourElements.some(element => targetCountries.some(tc => element.includes(tc)));
                     });
                 }
 
                 if (hasMonth) {
+                    // Filter by month if applicable
                     filteredTours = filteredTours.filter(tour => {
                         const questionText = tour.question || "";
                         return foundMonths.some(month => questionText.includes(month));
                     });
                 }
-                
+
                 return { type: 'dynamic', results: filteredTours };
             }
 
             // --- بخش تحلیل ساده (مثل ارزانترین) ---
             const lowerQuestion = normalizeText(question);
-            if (lowerQuestion.includes('ارزانترین') || lowerQuestion.includes('ارزان‌ترین') || lowerQuestion.includes('کم‌قیمت')) {
-                const pricedTours = allTours.filter(tour => tour.price && tour.price !== "قیمت موجود نیست").map(tour => {
-                    let numericPrice = 0;
-                    const priceStr = tour.price.replace(/[^0-9]/g, '');
-                    if (tour.price.includes('دلار')) numericPrice = parseInt(priceStr) * 90000;
-                    else if (tour.price.includes('یورو')) numericPrice = parseInt(priceStr) * 103000;
-                    else numericPrice = parseInt(priceStr) || 0;
-                    return { ...tour, numericPrice };
-                });
-                
+            if (lowerQuestion.includes('ارزانترین') || lowerQuestion.includes('ارزان‌ترین') || lowerQuestion.includes('ارزان') || lowerQuestion.includes('کم‌قیمت')) {
+                const pricedTours = allTours
+                    .filter(tour => tour.price && tour.price !== "قیمت موجود نیست")
+                    .map(tour => ({
+                        ...tour,
+                        numericPrice: convertPriceToToman(tour.price, currencyRates)
+                    }));
+
                 const cheapestTours = pricedTours.sort((a, b) => a.numericPrice - b.numericPrice).slice(0, 5);
                 return { type: 'cheapest', results: cheapestTours };
             }
@@ -688,127 +873,120 @@
             return null;
         }
 
-        // یافتن بهترین پاسخ
-        async function findBestAnswer(userQuestion) {
-            // مرحله ۱: تلاش برای پاسخ با هوش مصنوعی
-            // بررسی می‌کنیم که آیا مدل بارگذاری شده است یا خیر
-            if (aiModelLoaded) {
-                console.log("تلاش برای یافتن پاسخ با استفاده از مدل هوش مصنوعی...");
-                const aiAnswer = await analyzeWithAI(userQuestion);
-                if (aiAnswer) {
-                    console.log("پاسخ توسط هوش مصنوعی پیدا شد.");
-                    return { 
-                        type: 'direct', 
-                        content: formatFaqAnswer(aiAnswer) 
-                    };
-                } 
+        // تبدیل قیمت به تومان
+        function convertPriceToToman(priceString, currencyRates) {
+            if (!priceString || priceString === "قیمت موجود نیست") {
+                return Infinity;
             }
 
-            // مرحله ۲: اگر هوش مصنوعی پاسخی نداد، از منطق مبتنی بر قوانین استفاده می‌کنیم
-            const questionWithSynonyms = applySynonyms(userQuestion);
-            
-            // 1. پاسخ به گپ و گفت کوتاه
-            const smallTalkResponse = handleSmallTalk(userQuestion);
-            if (smallTalkResponse) {
-                return { type: 'direct', content: smallTalkResponse };
+            const normalizedPrice = priceString.replace(/,/g, '');
+            const priceValue = parseFloat(normalizedPrice.match(/[\d\.]+/)?.[0] || 0);
+
+            if (priceString.includes("دلار")) {
+                return priceValue * (currencyRates.USD || 90000);
+            } else if (priceString.includes("یورو")) {
+                return priceValue * (currencyRates.EUR || 103000);
+            } else if (priceString.includes("پوند")) {
+                return priceValue * (currencyRates.GBP || 120000);
+            } else if (priceString.includes("تومان")) {
+                return priceValue;
             }
 
-            // 2. تحلیل هوشمند درخواست تور
-            const tourAnalysis = analyzeTours(userQuestion);
-            if (tourAnalysis.type === 'dynamic') {
-                if (tourAnalysis.results.length === 0) {
-                    return { type: 'direct', content: "در حال حاضر اطلاعاتی برای این مورد موجود نیست." };
-                }
-                if (tourAnalysis.results.length === 1) {
-                    return { type: 'direct', content: formatFaqAnswer(tourAnalysis.results[0]) };
-                }
-                if (tourAnalysis.results.length > 1 && tourAnalysis.results.length <= 5) {
-                    let response = `<b>نتایج یافت شده برای "${userQuestion}":</b><div class="tour-list">`;
-                    tourAnalysis.results.forEach(tour => {
-                        response += `<div class="tour-item">${tour.question} ${tour.answer}</div>`;
-                    });
-                    response += '</div>';
-                    return { type: 'direct', content: response };
-                }
-                return { type: 'clarification', question: `برای سوال شما ${tourAnalysis.results.length} نتیجه پیدا شدند، کدام یک از موارد زیر مورد نظر شما است؟`, options: tourAnalysis.results.slice(0, 13) };
-            }
-            if (tourAnalysis.type === 'cheapest' && tourAnalysis.results.length > 0) {
-                let response = '<b>ارزان‌ترین تورهای موجود:</b><div class="tour-list">';
-                tourAnalysis.results.forEach(tour => {
-                    response += `<div class="tour-item"><span class="price-tag">${tour.price}</span> ${tour.question} (${tour.location})</div>`;
-                });
-                response += '</div>';
-                return { type: 'direct', content: response };
-            }
-            
-            // 3. پاسخ‌های سریع
-            const lowerQuestion = normalizeText(questionWithSynonyms);
-            if (isEnglish(lowerQuestion)) {
-                return { type: 'direct', content: "لطفاً به فارسی تایپ کنید." };
-            }
-
-            // 4. جستجوی هوشمند کلمات کلیدی (Fallback)
-            const matchedFAQs = [];
-            let specificPriceQuery = false;
-
-            if (lowerQuestion.includes("قیمت")) {
-                specificPriceQuery = true;
-            }
-
-            const query = lowerQuestion.replace("قیمت", "");
-
-            for (const faq of combinedFaqs) {
-                const searchableFields = [
-                    faq.question,
-                    ...(faq.keywords || []),
-                    faq.category,
-                    faq.location,
-                    faq.duration,
-                    faq.price
-                ].filter(Boolean).map(normalizeText);
-
-                const matchScore = searchableFields.reduce((score, field) => {
-                    if (field && query.includes(field)) {
-                        return score + field.length;
-                    }
-                    return score;
-                }, 0);
-
-                if (matchScore > 0) {
-                    matchedFAQs.push({ faq, score: matchScore });
-                }
-            }
-
-            if (matchedFAQs.length === 1) {
-                const faq = matchedFAQs[0].faq;
-                let answer = specificPriceQuery && faq.price ? `قیمت ${faq.question}: ${faq.price}` : formatFaqAnswer(faq);
-                return { type: 'direct', content: answer };
-            }
-            
-            if (matchedFAQs.length > 1) {
-                matchedFAQs.sort((a, b) => b.score - a.score);
-                const bestMatch = matchedFAQs[0].faq;
-                const bestScore = matchedFAQs[0].score;
-                
-                if (bestScore > 1 && (bestScore > matchedFAQs[1].score || matchedFAQs.length === 1)) {
-                    let answer = specificPriceQuery && bestMatch.price ? `قیمت ${bestMatch.question}: ${bestMatch.price}` : formatFaqAnswer(bestMatch);
-                    return { type: 'direct', content: answer };
-                }
-
-                return { type: 'clarification', question: `برای سوال شما ${matchedFAQs.length} نتیجه پیدا شدند، کدام یک از موارد زیر مورد نظر شما است؟`, options: matchedFAQs.slice(0, 13).map(m => m.faq) };
-            }
-
-            // 5. پاسخ پیش‌فرض نهایی
-            const defaultResponses = [
-                "متاسفانه پاسخی برای سوال شما پیدا نکردم. می‌توانید سوال خود را به شکل دیگری بپرسید.",
-                "به نظر می‌رسد این مورد در بانک اطلاعاتی من وجود ندارد. برای اطلاعات بیشتر می‌توانید با شماره <a href='tel:05138808'>05138808</a> تماس بگیرید.",
-                "متوجه سوال شما نشدم. لطفا واضح‌تر بپرسید.",
-                "در حال حاضر اطلاعاتی در دسترس نیست."
-            ];
-            return { type: 'direct', content: defaultResponses[Math.floor(Math.random() * defaultResponses.length)] };
+            return priceValue;
         }
 
-        // قالب‌بندی پاسخ FAQ
+        function findToursByBudget(question, allTours, currencyRates) {
+            const budgetRegex = /(\d[\d,.]*)\s*(میلیون|هزار|تومان|تومن)/g;
+            let budget = 0;
+            let match;
+
+            while ((match = budgetRegex.exec(question)) !== null) {
+                const value = parseFloat(match[1].replace(/,/g, ''));
+                const unit = match[2];
+
+                if (unit === 'میلیون') {
+                    budget = value * 1000000;
+                    break;
+                } else if (unit === 'هزار') {
+                    budget = value * 1000;
+                } else if (unit === 'تومان' || unit === 'تومن') {
+                    budget = value;
+                }
+            }
+
+            if (budget === 0) {
+                 const numberMatch = question.match(/\b(\d[\d,.]+)\b/);
+                 if (numberMatch) {
+                    const num = parseFloat(numberMatch[1].replace(/,/g, ''));
+                    if (num > 10000) {
+                        budget = num;
+                    }
+                 }
+            }
+
+            if (budget > 0) {
+                const affordableTours = allTours.filter(tour => {
+                    if (tour.category && (tour.category.includes("تورهای خارجی") || tour.category.includes("تورهای داخلی"))) {
+                        const tourPriceInToman = convertPriceToToman(tour.price, currencyRates);
+                        return tourPriceInToman <= budget;
+                    }
+                    return false;
+                });
+
+                affordableTours.sort((a, b) => {
+                    const priceA = convertPriceToToman(a.price, currencyRates);
+                    const priceB = convertPriceToToman(b.price, currencyRates);
+                    return priceA - priceB;
+                });
+                return affordableTours;
+            }
+            return [];
+        }
+
+        function getAllKeywords() {
+            const keywords = new Set();
+            keywords.add("تور");
+            keywords.add("پرواز");
+            keywords.add("هتل");
+            keywords.add("قطار");
+            keywords.add("ویزا");
+            keywords.add("سفر");
+            keywords.add("بلیط");
+            keywords.add("بلیت");
+
+            if (continentsData) {
+                for (const continent in continentsData) {
+                    keywords.add(normalizeText(continent));
+                    continentsData[continent].forEach(country => keywords.add(normalizeText(country.trim())));
+                }
+            }
+
+            if (months) {
+                for (const month in months) {
+                    keywords.add(normalizeText(month));
+                }
+            }
+
+            const currencyUnits = ["دلار", "یورو", "پوند", "تومان", "تومن", "ریال"];
+            currencyUnits.forEach(unit => keywords.add(normalizeText(unit)));
+
+            combinedFaqs.forEach(faq => {
+                if (faq.keywords) {
+                    faq.keywords.forEach(kw => keywords.add(normalizeText(kw.trim())));
+                }
+                if (faq.question) {
+                    // Add individual words from the question as keywords
+                    faq.question.split(/\s+/).forEach(word => {
+                        // Basic filtering to avoid common words, can be improved
+                        if (word.length > 2) {
+                            keywords.add(normalizeText(word.replace(/[؟,.]/g, '')));
+                        }
+                    });
+                }
+            });
+            return keywords;
+        }
+
         function formatFaqAnswer(faq) {
             let answer = `<b>${faq.question}</b><br>`;
             if (faq.location) answer += `مکان: ${faq.location}<br>`;
@@ -819,9 +997,420 @@
             return answer;
         }
 
-        // کدهای اصلی JavaScript
+        // Static logic fallback function (from chat.html)
+        async function findBestAnswerStatic(userQuestion) {
+            const normalizedQuestion = normalizeText(userQuestion);
+            const noHelpPhrases = ["هیچ کمکی نیاز ندارم", "کمک نمیخوام", "نیازی به کمک ندارم"].map(normalizeText);
+            if (noHelpPhrases.some(phrase => normalizedQuestion.includes(phrase))) {
+                return { type: 'direct', content: "باشه، اگر سوال دیگری داشتید من در خدمتم." };
+            }
+
+            if (isEnglish(normalizedQuestion)) {
+               return { type: 'direct', content: "لطفاً به فارسی تایپ کنید." };
+            }
+
+            const allKeywords = getAllKeywords();
+            const containsKeyword = [...allKeywords].some(kw => normalizedQuestion.includes(kw));
+            const containsNumber = /\d/.test(normalizedQuestion);
+
+            // Check for visa queries
+            const isVisaQuery = normalizedQuestion.includes('ویزا') || normalizedQuestion.includes('ویزای');
+            const isTourQuery = normalizedQuestion.includes('تور');
+            const isFlightQuery = normalizedQuestion.includes('پرواز') || normalizedQuestion.includes('بلیط') || normalizedQuestion.includes('بلیت') || normalizedQuestion.includes('هواپیما');
+
+            const allForeignCountries = Object.values(continentsData).flat().map(c => normalizeText(c.trim()));
+            const detectedCountry = allForeignCountries.find(country => normalizedQuestion.includes(country));
+
+            // Handle specific visa queries (excluding the special "ویزای دبی" case already handled)
+            if (isVisaQuery && detectedCountry && !(normalizedQuestion.includes('ویزای دبی') || normalizedQuestion.includes('ویزا دبی'))) {
+                const visaFaq = combinedFaqs.find(f =>
+                    (f.question && normalizeText(f.question).includes(normalizeText(detectedCountry)) && normalizeText(f.question).includes('ویزا')) ||
+                    (f.keywords && f.keywords.some(kw => normalizeText(kw).includes(normalizeText(detectedCountry)) && normalizeText(kw).includes('ویزا')))
+                );
+                if (visaFaq) {
+                    return { type: 'direct', content: formatFaqAnswer(visaFaq) };
+                }
+                const generalVisaFaq = combinedFaqs.find(f => normalizeText(f.question).includes('ویزا') && !f.question.includes('تور'));
+                if (generalVisaFaq) {
+                    return { type: 'direct', content: formatFaqAnswer(generalVisaFaq) };
+                }
+            }
+
+            // Handle general country queries (when only country name is provided)
+            if (detectedCountry && !isVisaQuery && !isTourQuery && !isFlightQuery) {
+                let relevantOptions = combinedFaqs.filter(f =>
+                    (f.question && normalizeText(f.question).includes(normalizeText(detectedCountry))) ||
+                    (f.keywords && f.keywords.some(kw => normalizeText(kw).includes(normalizeText(detectedCountry)))) ||
+                    (f.location && normalizeText(f.location).includes(normalizeText(detectedCountry)))
+                );
+
+                if (relevantOptions.length > 0) {
+                    return {
+                        type: 'clarification',
+                        question: `البته! برای ${detectedCountry}، موارد زیر را پیدا کردم:`,
+                        options: relevantOptions.slice(0, 15) // Limit to top 10 results
+                    };
+                } else {
+                    // If no FAQs or articles found for the country
+                    return { type: 'direct', content: `متاسفانه اطلاعاتی (تور، ویزا یا مقاله) برای ${detectedCountry} پیدا نکردم.` };
+                }
+            }
+
+            if (!containsKeyword && !containsNumber) {
+                const smallTalkResponse = handleSmallTalk(normalizedQuestion);
+                if (smallTalkResponse) {
+                    return { type: 'direct', content: smallTalkResponse };
+                }
+                const defaultResponses = [
+                    "متاسفانه پاسخی برای سوال شما پیدا نکردم. می‌توانید سوال خود را به شکل دیگری بپرسید یا با پشتیبانی <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+                    "به نظر می‌رسد این مورد در بانک اطلاعاتی من وجود ندارد. برای اطلاعات بیشتر می‌توانید با شماره <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+                    " متوجه سوال شما نشدم. لطفا واضح‌تر بپرسید یا با پشتیبانی <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+            ];
+                return { type: 'direct', content: defaultResponses[Math.floor(Math.random() * defaultResponses.length)] };
+            }
+
+
+            // Function to count matching keywords
+            function countMatchingKeywords(questionWords, faqKeywords) {
+                let count = 0;
+                const normalizedFaqKeywords = faqKeywords.map(kw => normalizeText(kw));
+                for (const qWord of questionWords) {
+                    if (normalizedFaqKeywords.includes(qWord)) {
+                        count++;
+                    }
+                }
+                return count;
+            }
+
+            const questionWords = normalizedQuestion.split(/\s+/).filter(Boolean);
+            const keywordMatches = [];
+
+            for (const faq of combinedFaqs) {
+                const faqSearchableKeywords = [
+                    ...(faq.keywords || []),
+                    ...(faq.question ? faq.question.split(/\s+/).filter(Boolean) : []),
+                    ...(faq.location ? faq.location.split(/\s+/).filter(Boolean) : [])
+                ].map(word => normalizeText(word.replace(/[؟,.]/g, ''))); // Normalize and clean words
+
+                const matchCount = countMatchingKeywords(questionWords, faqSearchableKeywords);
+                if (matchCount > 0) {
+                    keywordMatches.push({ faq, matchCount });
+                }
+            }
+
+            // Sort by matchCount in descending order
+            keywordMatches.sort((a, b) => b.matchCount - a.matchCount);
+
+            // If there are multiple matches with a good score, offer clarification
+            if (keywordMatches.length > 0) {
+                const topMatch = keywordMatches[0];
+                // Define a threshold for "multiple keywords" - e.g., at least 2 matching keywords
+                // And ensure the top match has a reasonable number of matches
+                if (topMatch.matchCount >= 2) {
+                    // Filter for FAQs that have a similar high match count (e.g., within 1 of the top match)
+                    const highlyRelevantFaqs = keywordMatches.filter(item => item.matchCount >= topMatch.matchCount - 1);
+
+                    if (highlyRelevantFaqs.length === 1) {
+                        return { type: 'direct', content: formatFaqAnswer(highlyRelevantFaqs[0].faq) };
+                    } else if (highlyRelevantFaqs.length > 1) {
+                        return {
+                            type: 'clarification',
+                            question: `البته! برای سوال شما چند نتیجه مرتبط پیدا شد، کدام یک مد نظر شماست؟`,
+                            options: highlyRelevantFaqs.slice(0, 5).map(m => m.faq) // Limit to top 5 for clarity
+                        };
+                    }
+                }
+            } 
+
+            // جستجو بر اساس بودجه
+            const currencyRates = (staticFaqData && staticFaqData.currency_rates) ? staticFaqData.currency_rates : { USD: 90000, EUR: 103000, GBP: 120000 };
+            const budgetTours = findToursByBudget(normalizedQuestion, combinedFaqs, currencyRates);
+            if (budgetTours.length > 0) {
+                let response = `<b>بر اساس بودجه شما، این تورها پیشنهاد می‌شوند:</b><div class="tour-list">`;
+                budgetTours.forEach(tour => {
+                    response += `<div class="tour-item">${formatFaqAnswer(tour)}</div>`;
+                });
+                response += '</div>';
+                return { type: 'direct', content: response };
+            }
+            // بررسی اختصاصی برای پروازهای خارجی و تورها
+            if (continentsData && Object.keys(continentsData).length > 0) {
+                const allForeignCountries = Object.values(continentsData).flat().map(c => c.trim());
+                const isFlightQuery = normalizedQuestion.includes('پرواز') || normalizedQuestion.includes('بلیط') || normalizedQuestion.includes('بلیت') || normalizedQuestion.includes('هواپیما');;
+                const isTourQuery = normalizedQuestion.includes('تور');
+                const containsForeignCountry = allForeignCountries.some(country => normalizedQuestion.includes(country) && country);
+
+
+            if (containsForeignCountry) {
+                // Condition 1: Foreign country + Tour + Flight
+                if (isTourQuery && isFlightQuery) {
+                    const tourFaq = combinedFaqs.find(f => f.question.includes('درباره تورهای خارجی و ویزای دبی سوال دارم'));
+                    if (tourFaq) {
+                        return { type: 'direct', content: formatFaqAnswer(tourFaq) };
+                    }
+                }
+                    // Condition 2: Foreign country + Flight (but not tour)
+                    else if (isFlightQuery) {
+                        const internationalFlightFaq = combinedFaqs.find(f => f.question.includes('درباره پروازهای خارجی سوال دارم'));
+                        if (internationalFlightFaq) {
+                            return { type: 'direct', content: formatFaqAnswer(internationalFlightFaq) };
+                        }
+                    }
+                }
+            }
+
+            const domesticCities = ["تهران", "مشهد", "اصفهان", "شیراز", "تبریز", "اهواز", "کرمانشاه", "رشت", "ساری", "یزد", "کیش"]; // Add more as needed
+            const detectedCity = domesticCities.find(city => normalizedQuestion.includes(city));
+
+            if (detectedCity) {
+                const isTrainQuery = normalizedQuestion.includes('قطار');
+                const isFlightQuery = normalizedQuestion.includes('پرواز') || normalizedQuestion.includes('هواپیما');
+                const trainFaq = combinedFaqs.find(f => f.question.includes('درباره بلیط قطار سوال دارم'));
+                const domesticFlightsFaq = combinedFaqs.find(f => f.question.includes('درباره پروازهای داخلی سوال دارم'));
+
+                if (isTrainQuery) {
+                    if (trainFaq) {
+                        return { type: 'direct', content: formatFaqAnswer(trainFaq) };
+                    }
+                } else if (isFlightQuery) {
+                    if (domesticFlightsFaq) {
+                        return { type: 'direct', content: formatFaqAnswer(domesticFlightsFaq) };
+                    }
+                } else {
+                    const domesticTours = combinedFaqs.filter(f => f.category === 'تورهای داخلی' && (f.question.includes(detectedCity) || (f.keywords && f.keywords.includes(detectedCity))));
+                    let options = [];
+                    if (domesticTours.length > 0) {
+                        options = options.concat(domesticTours);
+                    }
+                    if (trainFaq) {
+                        options.push(trainFaq);
+                    }
+                    if (domesticFlightsFaq) {
+                        options.push(domesticFlightsFaq);
+                    }
+
+                    if (options.length > 0) {
+                        return {
+                            type: 'clarification',
+                            question: `البته! برای شهر ${detectedCity}، موارد زیر را پیدا کردم:`,
+                            options: options
+                        };
+                    }
+                }
+            }
+            const isDomesticQuery = domesticCities.some(city => normalizedQuestion.includes(city));
+
+            // 1. تشخیص قصد اصلی کاربر
+            let intent = 'general';
+            if (normalizedQuestion.includes('پرواز')) intent = 'flight';
+            else if (normalizedQuestion.includes('هتل')) intent = 'hotel';
+            else if (normalizedQuestion.includes('قطار')) intent = 'train';
+            else if (normalizedQuestion.includes('تور')) intent = 'tour';
+            else if (normalizedQuestion.includes('بلیط')) intent = 'ticket';
+
+            // 2. فیلتر کردن داده‌ها بر اساس قصد
+            let relevantFaqs = combinedFaqs;
+
+            if (intent === 'flight') {
+                relevantFaqs = combinedFaqs.filter(faq => {
+                    const question = faq.question || '';
+                    const category = faq.category || '';
+                    const isFlightRelated = category.includes('پرواز') || question.includes('پرواز');
+
+                    if (isDomesticQuery) {
+                        // اگر کوئری داخلی است، فقط پروازهای داخلی را نشان بده
+                        return isFlightRelated && (category.includes('داخلی') || question.includes('داخلی'));
+                    }
+                    return isFlightRelated;
+                });
+            } else if (intent === 'hotel') {
+                relevantFaqs = combinedFaqs.filter(faq =>
+                    (faq.category && faq.category.includes('هتل')) || (faq.question && faq.question.includes('هتل'))
+                );
+            } else if (intent === 'train') {
+                relevantFaqs = combinedFaqs.filter(faq =>
+                    (faq.category && faq.category.includes('قطار')) || (faq.question && faq.question.includes('قطار'))
+                );
+            } else if (intent === 'ticket' && isDomesticQuery) {
+                const trainFaq = combinedFaqs.find(f => f.question.includes('بلیط قطار'));
+                const domesticFlightsFaq = combinedFaqs.find(f => f.question.includes('درباره پروازهای داخلی سوال دارم'));
+
+                let options = [];
+                if(trainFaq) options.push(trainFaq);
+                if(domesticFlightsFaq) options.push(domesticFlightsFaq);
+
+                if (options.length > 0) {
+                    return {
+                        type: 'clarification',
+                        question: `برای بلیط به شهرهای ایران، این گزینه‌ها در دسترس است:`,
+                        options: options
+                    };
+                }
+                // Fallback if specific FAQs are not found
+                relevantFaqs = combinedFaqs.filter(faq => {
+                    const category = faq.category || '';
+                    return category.includes('قطار') || category.includes('پرواز داخلی');
+                });
+
+            } else if (intent === 'tour' && isDomesticQuery) {
+                const city = domesticCities.find(c => normalizedQuestion.includes(c));
+                const specificTour = combinedFaqs.find(f => f.category === 'تورهای داخلی' && f.question.includes(city));
+                const generalTourFaq = combinedFaqs.find(f => f.question.includes('آیا شما تورهای داخلی هم برگزار می‌کنید؟'));
+
+                let results = [];
+                if (specificTour) results.push(specificTour);
+                if (generalTourFaq) results.push(generalTourFaq);
+
+                if (results.length > 0) {
+                     return {
+                        type: 'clarification',
+                        question: `نتایج برای تور ${city}:`,
+                        options: results
+                    };
+                }
+            }
+            else if (intent === 'tour' || intent === 'general') {
+                 const tourAnalysis = analyzeTours(normalizedQuestion, currencyRates);
+                if (tourAnalysis.type === 'dynamic' && tourAnalysis.results.length > 0) {
+                    if (tourAnalysis.results.length === 1) {
+                        return { type: 'direct', content: formatFaqAnswer(tourAnalysis.results[0]) };
+                    }
+                    const count = tourAnalysis.results.length.toLocaleString('fa-IR');
+                    return { type: 'clarification', question: `البته! برای سوال شما ${count} نتیجه پیدا شدند، کدام یک از موارد زیر مورد نظر شما است؟`, options: tourAnalysis.results.slice(0, 13) };
+                }
+                 if (tourAnalysis.type === 'cheapest' && tourAnalysis.results.length > 0) {
+                    let response = '<b>ارزان‌ترین تورهای موجود:</b><div class="tour-list">';
+                    tourAnalysis.results.forEach(tour => {
+                        response += `<div class="tour-item"><span class="price-tag">${tour.price}</span> ${tour.question} (${tour.location})</div>`;
+                    });
+                    response += '</div>';
+                    return { type: 'direct', content: response };
+                }
+            }
+
+            // 4. جستجوی هوشمند کلمات کلیدی (Fallback) روی داده‌های فیلتر شده
+            const matchedFAQs = [];
+            const lowerQuestion = normalizedQuestion; // Already normalized
+
+            for (const faq of relevantFaqs) {
+                const searchableFields = [
+                    faq.question,
+                    ...(faq.keywords || []),
+                    faq.location, // مکان را برای جستجو مهم‌تر می‌کنیم
+                ].filter(Boolean).map(normalizeText);
+
+                const cityInQuestion = domesticCities.find(c => lowerQuestion.includes(normalizeText(c)));
+
+                let matchScore = 0;
+                if (cityInQuestion) {
+                     const cityMatch = searchableFields.some(field => field.includes(normalizeText(cityInQuestion)));
+                     if(cityMatch) {
+                        matchScore = 100; // امتیاز بالا برای تطابق شهر
+                     }
+                }
+
+                if (matchScore === 0) {
+                     matchScore = searchableFields.reduce((score, field) => {
+                        if (field && lowerQuestion.includes(field)) {
+                            return score + field.length;
+                        }
+                        return score;
+                    }, 0);
+                }
+
+                if (matchScore > 0) {
+                    matchedFAQs.push({ faq, score: matchScore });
+                }
+            }
+
+            if (matchedFAQs.length > 0) {
+                matchedFAQs.sort((a, b) => b.score - a.score);
+                const bestMatch = matchedFAQs[0].faq;
+
+                if (bestMatch.sub_options) {
+                    return {
+                        type: 'clarification',
+                        question: bestMatch.answer,
+                        options: bestMatch.sub_options
+                    };
+                }
+
+                if (matchedFAQs.length === 1 || (matchedFAQs[0].score > (matchedFAQs[1]?.score || 0) * 1.5)) {
+                    return { type: 'direct', content: formatFaqAnswer(bestMatch) };
+                }
+                return {
+                    type: 'clarification',
+                    question: `البته! برای سوال شما چند نتیجه پیدا شد، کدام یک مد نظر شماست؟`,
+                    options: matchedFAQs.slice(0, 5).map(m => m.faq)
+                };
+            }
+
+            // 5. پاسخ به گپ و گفت کوتاه
+            const smallTalkResponse = handleSmallTalk(normalizedQuestion);
+            if (smallTalkResponse) {
+                return { type: 'direct', content: smallTalkResponse };
+            }
+
+            // 6. پاسخ پیش‌فرض نهایی
+            const defaultResponses = [
+                "متاسفانه پاسخی برای سوال شما پیدا نکردم. می‌توانید سوال خود را به شکل دیگری بپرسید یا با پشتیبانی <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+                "به نظر می‌رسد این مورد در بانک اطلاعاتی من وجود ندارد. برای اطلاعات بیشتر می‌توانید با شماره <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+                " متوجه سوال شما نشدم. لطفا واضح‌تر بپرسید یا با پشتیبانی <a href='tel:05138808'>05138808</a> تماس بگیرید.",
+            ];
+            return { type: 'direct', content: defaultResponses[Math.floor(Math.random() * defaultResponses.length)] };
+        }
+
+        // Main function with AI-first approach and static fallback
+        async function findBestAnswer(userQuestion) {
+            if (!isDataLoaded) {
+                return { type: 'direct', content: "در حال بارگذاری اطلاعات، لطفاً کمی صبر کنید..." };
+            }
+
+            // Extract relevant context
+            const context = extractRelevantContext(userQuestion);
+            globalContext = context;
+            // Build enhanced prompt
+            const prompt = buildEnhancedPrompt(userQuestion, context);
+
+            // If it's small talk, return directly
+            if (context.smallTalk) {
+                return { type: 'direct', content: context.smallTalk };
+            }
+
+            let response;
+            let articlesHtml = '';
+
+            try {
+                // Attempt to call OpenRouter API
+                const apiResponse = await callOpenRouterAPI(prompt);
+                response = { type: 'direct', content: enhanceResponse(apiResponse, context) };
+            } catch (error) {
+                console.error("خطا در فراخوانی مدل هوش مصنوعی، استفاده از منطق ثابت:", error);
+                // Fallback to static logic
+                response = await findBestAnswerStatic(userQuestion);
+            }
+
+            // If travel guide articles were found, prepend them to the existing response content
+            if (articlesHtml) {
+                if (response.type === 'direct') {
+                    // Check if the response is primarily about "no tours available"
+                    const noTourKeywords = ["توری موجود نیست", "در دسترس نیست", "پیدا نکردم"].map(normalizeText);
+                    const normalizedResponseContent = normalizeText(response.content);
+
+                    if (noTourKeywords.some(keyword => normalizedResponseContent.includes(keyword))) {
+                        response.content = articlesHtml + `<br><br>` + response.content;
+                    } else {
+                        response.content += `<br><br>${articlesHtml}`;
+                    }
+                } else if (response.type === 'clarification') {
+                    response.question += `<br><br>${articlesHtml}`;
+                }
+            }
+            return response;
+        }
+
+        // UI and Chat functionality (preserved from original)
         document.addEventListener('DOMContentLoaded', function () {
-            loadModel();
             loadDataFromJSON();
 
             const chatIcon = document.getElementById('chatIcon');
@@ -833,9 +1422,32 @@
 
             let isBotTyping = false;
             let isExpanded = false;
+            let chatHistory = [];
 
             chatIcon.addEventListener('click', expandChat);
             closeBtn.addEventListener('click', collapseChat);
+
+
+            
+
+            function saveChatHistory() {
+                sessionStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+            }
+
+            function loadChatHistory() {
+                const storedHistory = sessionStorage.getItem('chatHistory');
+                if (storedHistory) {
+                    chatHistory = JSON.parse(storedHistory);
+                    chatHistory.forEach(msg => {
+                        if (msg.type === 'user') {
+                            displayMessage(msg.content, 'user-message', 'userContainer');
+                        } else if (msg.type === 'bot') {
+                            displayMessage(msg.content, 'bot-message', 'botContainer', msg.allowHTML);
+                        }
+                    });
+                    scrollToBottom();
+                }
+            }
 
             function expandChat() {
                 if (!isExpanded) {
@@ -850,18 +1462,32 @@
                 isExpanded = false;
             }
 
+            function displayMessage(message, className, idName, allowHTML = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = className;
+                messageDiv.id = idName;
+                if (allowHTML) {
+                    messageDiv.innerHTML = message;
+                } else {
+                    messageDiv.textContent = message;
+                }
+                chatBody.appendChild(messageDiv);
+            }
+
             function initializeChat() {
-                if (chatBody.children.length === 0) {
-                    addBotMessage('سلام، وقت بخیر. دستیار هوشمند آتی در خدمت شماست. 👋');
+                chatBody.innerHTML = '';
+                loadChatHistory();
+                if (chatHistory.length === 0) {
+                    addBotMessage('سلام، وقت بخیر. راهنمای هوشمند آتی در خدمت شماست. 👋');
                 }
             }
 
-            // شبیه‌سازی تایپ کردن بات
-            function simulateTyping(callback) {
+            function simulateTyping() {
                 isBotTyping = true;
 
                 const typingDiv = document.createElement('div');
                 typingDiv.className = 'typing-indicator';
+                typingDiv.id = 'typing-indicator';
                 typingDiv.innerHTML = `
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
@@ -869,56 +1495,56 @@
                 `;
                 chatBody.appendChild(typingDiv);
                 scrollToBottom();
-
-                setTimeout(() => {
-                    chatBody.removeChild(typingDiv);
-                    callback();
-                    isBotTyping = false;
-                    scrollToBottom();
-                }, 1500);
+                
+                return typingDiv;
             }
 
-            // اضافه کردن پیام کاربر
-            function addUserMessage(message) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'user-message';
-                messageDiv.id = 'userContainer';
-                messageDiv.textContent = message;
-                chatBody.appendChild(messageDiv);
+            function stopTyping() {
+                const typingDiv = document.getElementById('typing-indicator');
+                if (typingDiv) {
+                    chatBody.removeChild(typingDiv);
+                }
+                isBotTyping = false;
                 scrollToBottom();
             }
 
-            // اضافه کردن پیام بات با پشتیبانی از HTML
-            function addBotMessage(message, allowHTML = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'bot-message';
-                messageDiv.id = 'botContainer';
+            function addUserMessage(message) {
+                displayMessage(message, 'user-message', 'userContainer');
+                chatHistory.push({ type: 'user', content: message });
+                saveChatHistory();
+                scrollToBottom();
+            }
 
+            function addBotMessage(message, allowHTML = false) {
+                displayMessage(message, 'bot-message', 'botContainer', allowHTML);
+                chatHistory.push({ type: 'bot', content: message, allowHTML: allowHTML });
+                saveChatHistory();
                 if (allowHTML) {
-                    messageDiv.innerHTML = message;
                     setTimeout(() => {
                         setupAccordions();
                     }, 100);
-                } else {
-                    messageDiv.textContent = message;
                 }
-
-                chatBody.appendChild(messageDiv);
                 scrollToBottom();
             }
+            window.addBotMessage = addBotMessage
 
             function handleClarification(faq) {
                 const oldButtons = document.querySelector('.clarification-buttons');
                 if (oldButtons) {
                     oldButtons.remove();
                 }
-                
                 addUserMessage(faq.question);
-                
-                simulateTyping(() => {
-                    addBotMessage(formatFaqAnswer(faq), true);
-                    askForAnotherQuestion();
-                });
+
+                simulateTyping();
+                setTimeout(() => {
+                    stopTyping();
+                    if (faq.sub_options) {
+                        displayClarification(faq.answer, faq.sub_options);
+                    } else {
+                        addBotMessage(formatFaqAnswer(faq), true);
+                        askForAnotherQuestion();
+                    }
+                }, 1500); // Simulate typing delay
             }
 
             function askForAnotherQuestion() {
@@ -929,7 +1555,7 @@
                 messageDiv.className = 'bot-message';
                 messageDiv.innerHTML = `<p>اگر به اطلاعات بیشتری نیاز دارید یا سوال دیگری دارید، خوشحال می‌شوم کمک کنم!</p>`;
                 messageDiv.appendChild(container);
-                
+
                 chatBody.appendChild(messageDiv);
                 scrollToBottom();
             }
@@ -950,7 +1576,7 @@
                 messageDiv.className = 'bot-message';
                 messageDiv.innerHTML = `<p>${question}</p>`;
                 messageDiv.appendChild(container);
-                
+
                 chatBody.appendChild(messageDiv);
                 scrollToBottom();
             }
@@ -962,26 +1588,79 @@
                 addUserMessage(message);
                 userInput.value = '';
 
-                simulateTyping(async () => {
+                // Start typing animation
+                simulateTyping();
+
+                try {
+                    // Get AI response
                     const response = await findBestAnswer(message);
                     
+                    // Stop typing animation
+                    stopTyping();
+                    
+                    // Display response
                     if (response.type === 'direct') {
                         addBotMessage(response.content, true);
                     } else if (response.type === 'clarification') {
                         displayClarification(response.question, response.options);
                     }
-                });
+                } catch (error) {
+                    // Stop typing animation even if there's an error
+                    stopTyping();
+                    addBotMessage('متاسفانه مشکلی پیش آمده است. لطفاً دوباره تلاش کنید.', false);
+                }
             }
 
-            // تنظیم آکاردئون‌ها
+            // نمایش دکمه‌ها برای چند تور
+            function showTourButtons(tours) {
+                const container = document.createElement("div");
+                container.className = "clarification-buttons";
+
+                tours.forEach((tour, index) => {
+                    const button = document.createElement("button");
+                    button.className = "clarification-btn";
+                    button.textContent = tour.question; // فقط عنوان تور نمایش داده میشه
+                    button.onclick = () => window.handleTourSelectionByIndex(index);
+                    container.appendChild(button);
+                });
+                const messageDiv = document.createElement("div");
+                messageDiv.className = "bot-message";
+                messageDiv.innerHTML = "<p>لطفاً یکی از تورها را انتخاب کنید:</p>";
+                messageDiv.appendChild(container);
+
+                const chatBodyEl = document.getElementById("chatBody");
+                chatBodyEl.appendChild(messageDiv);
+                chatBodyEl.scrollTop = chatBodyEl.scrollHeight;
+            }
+
+            window.handleTourSelectionByIndex = function(index) {
+                const tour = globalContext.tours[index];
+                window.handleTourSelection(tour);
+            };
+
+            window.handleTourSelection = function(tour) {
+                document.querySelectorAll(".clarification-buttons").forEach(el => {
+                    const parentMsg = el.closest(".bot-message");
+                    if (parentMsg) parentMsg.remove();
+                });
+                let details = `<b>${tour.question}</b><br>`;
+                if (tour.location) details += `📍 مکان: ${tour.location}<br>`;
+                if (tour.duration) details += `⏳ مدت: ${tour.duration}<br>`;
+                if (tour.flight)   details += `✈️ پرواز: ${tour.flight}<br>`;
+                if (tour.price)    details += `💵 قیمت: ${tour.price}<br>`;
+                if (tour.answer)   details += `<p>${tour.answer}</p>`;
+
+                window.addBotMessage(details, true);
+            };
+
             function setupAccordions() {
                 const accordionHeaders = document.querySelectorAll('.accordion-header');
-                    
+
                 accordionHeaders.forEach(header => {
                     header.removeEventListener('click', toggleAccordion);
                     header.addEventListener('click', toggleAccordion);
                 });
-                    
+
                 function toggleAccordion() {
                     this.classList.toggle('active');
                     const content = this.nextElementSibling;
@@ -989,17 +1668,15 @@
                 }
             }
 
-            // اسکرول به پایین
             function scrollToBottom() {
                 chatBody.scrollTop = chatBody.scrollHeight;
             }
 
-            // رویدادهای کلیک و کیبورد
             sendButton.addEventListener('click', sendUserMessage);
             userInput.addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') sendUserMessage();
             });
         });
-    </script>
+</script>
 </body>
 </html>
