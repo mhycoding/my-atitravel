@@ -1,8 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
@@ -11,15 +9,14 @@ import time
 import os
 
 # تنظیمات اولیه درایور
-# تنظیمات Chrome
-chrome_options = Options()
-chrome_options.add_argument("--headless")  # برای اجرای بدون界面
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-
-# استفاده از ChromeDriver Manager برای دانلود خودکار chromedriver
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
+# استفاده از مسیر نسبی برای chromedriver.exe
+script_dir = os.path.dirname(__file__)
+chromedriver_path = os.path.join(script_dir, 'chromedriver-win64', 'chromedriver.exe')
+service = Service(chromedriver_path)
+options = webdriver.ChromeOptions()
+# برای بررسی بهتر خطاها headless رو موقتا غیرفعال کن
+#options.add_argument("--headless=new")
+driver = webdriver.Chrome(service=service, options=options)
 
 def extract_keywords(text):
     stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از"}
@@ -304,6 +301,56 @@ def crawl_blog_articles():
             break
     return articles
 
+
+def extract_currency_data():
+    print("🔍 در حال استخراج قیمت ارزها از tgju.org...")
+    
+    url = "https://www.tgju.org/currency"
+    currencies = []
+    
+    try:
+        driver.get(url)
+        # منتظر بارگذاری جدول ارزها بمان
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "table.data-table.market-table tbody tr"))
+        )
+        time.sleep(2)
+        
+        # پیدا کردن تمام ردیف‌های جدول ارزها
+        currency_rows = driver.find_elements(By.CSS_SELECTOR, "table.data-table.market-table tbody tr")
+        target_currencies = ["دلار", "یورو", "پوند انگلیس"]
+        
+        for row in currency_rows:
+            try:
+                # استخراج نام ارز
+                currency_name = row.find_element(By.TAG_NAME, "th").text.strip()
+                
+                # فقط ارزهای مورد نظر را پردازش کن
+                if currency_name in target_currencies  :
+                    # استخراج قیمت فعلی
+                    current_price = row.find_element(By.CSS_SELECTOR, "td.nf").text.strip()
+                    
+                    currencies.append({
+                        "name": currency_name,
+                        "current_price": current_price
+                    })
+                    print(f"✅ {currency_name}: {current_price}")
+                    
+            except Exception as e:
+                print(f"❌ خطا در پردازش ردیف ارز: {e}")
+                continue
+                
+    except Exception as e:
+        print(f"❌ خطا در بارگذاری صفحه ارز: {e}")
+        return []
+    
+    return currencies
+
+
+
+
+
+
 def crawl_tours():
     base_url = "https://www.atitravel.ir"
     endpoints = {
@@ -333,9 +380,14 @@ def crawl_tours():
         faqs["مقالات"] = crawl_blog_articles()
     except Exception as e:
         print(f"❌ خطا در پردازش مقالات بلاگ: {e}")
+        
+    try:
+        faqs['currencies'] = extract_currency_data()
+    except  Exception as e:   
+        print("⚠️ هیچ داده ارزی استخراج نشد.") 
 
     # ذخیره در فایل
-    with open('ati.json', 'w', encoding='utf-8') as f:
+    with open('ati-currency.json', 'w', encoding='utf-8') as f:
         json.dump({"faqs": faqs, "metadata": {"last_updated": time.strftime("%Y-%m-%d")}}, f, ensure_ascii=False, indent=4)
 
     driver.quit()
@@ -344,4 +396,3 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
-
