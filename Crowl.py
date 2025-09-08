@@ -421,7 +421,7 @@ def crawl_tours():
         print(f"❌ خطا در پردازش مقالات بلاگ: {e}")
         
     try:
-        faqs['currencies'] = extract_currency_data()
+        faqs['currency_rates'] = extract_currency_data()
     except  Exception as e:   
         print("⚠️ هیچ داده ارزی استخراج نشد.") 
 
@@ -435,4 +435,5 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
 
