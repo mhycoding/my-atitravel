@@ -903,15 +903,16 @@
             }
         ],
         "تورهای داخلی": [
-            {
+             {
                 "question": "اصفهان",
                 "answer": "<a href='https://www.atitravel.ir/tour/1402-isfahan' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
                     "اصفهان"
                 ],
                 "category": "تورهای داخلی",
-                "location": "اصفهان",   
-                "duration" : "4 روز",
+                "flight": "مشخص نشده",
+                "location": "اصفهان",
+                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -921,8 +922,9 @@
                     "شیراز"
                 ],
                 "category": "تورهای داخلی",
-                "location": "شیراز",
-                "duration" : "4 روز",
+                "flight": "مشخص نشده",
+                "location": "شیراز، مشهد",
+                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -933,19 +935,35 @@
                     "کرمان"
                 ],
                 "category": "تورهای داخلی",
+                "flight": "مشخص نشده",
                 "location": "کرمان",
-                "duration" : "4 روز",
+                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "چابهار",
-                "answer": "<a href='https://www.atitravel.ir/tour/chabahaar' target='_blank'>مشاهده جزئیات</a>",
+                "question": "تهران",
+                "answer": "<a href='https://www.atitravel.ir/tour/tehran' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
-                    "چابهار"
+                    "تهران"
                 ],
                 "category": "تورهای داخلی",
+                "flight": "مشخص نشده",
+                "location": "تهران، مشهد",
+                "duration": "4 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "چابهار (تابستان ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/chabahaar' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "چابهار",
+                    "تابستان",
+                    "۱۴۰۴"
+                ],
+                "category": "تورهای داخلی",
+                "flight": "مشخص نشده",
                 "location": "چابهار",
-                "duration" : "4 روز",
+                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -955,8 +973,9 @@
                     "یزد"
                 ],
                 "category": "تورهای داخلی",
-                "location": "یزد",
-                "duration" : "4 روز",
+                "flight": "مشخص نشده",
+                "location": "یزد، مشهد",
+                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -966,407 +985,55 @@
                     "بندرعباس"
                 ],
                 "category": "تورهای داخلی",
-                "location": "بندرعباس",
-                "duration" : "4 روز",
+                "flight": "مشخص نشده",
+                "location": "بندرعباس، مشهد",
+                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "كيش",
-                "answer": "<a href='https://www.atitravel.ir/tour/kish' target='_blank'>مشاهده جزئیات</a>",
+                "question": "کلات (تابستان ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/kalat' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
-                    "كيش",
-                    "جنوب",
-                    "سفر جنوب",
-                    "جزیره"
-                    
+                    "کلات",
+                    "تابستان",
+                    "۱۴۰۴"
                 ],
                 "category": "تورهای داخلی",
-                "location": "کیش ( ایران )",    
-                "duration" : "4 روز",
+                "flight": "مشخص نشده",
+                "location": "مشهد",
+                "duration": "1 روز",
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "مشهد",
-                "answer": "گزینه مورد نظر خود را انتخاب کنید",
-                "keywords": ["مشهد"],
-                "category": "",
-                "sub_options": [
-                    {"question": "درباره پروازهای داخلی سوال دارم", "answer": "<ul> می‌توانید با برقراری تماس تلفنی یا به صورت مستقیم از طریق لینک زیر اقدام به خرید بلیط هواپیما برای کلیه مسیرهای داخلی کنید.<li><a href='tel:+985138808102' target='_blank' class='phone-item'> <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۲</span><span class='icon'>📞</span></a></li><li><a href='tel:+985138808103' target='_blank' class='phone-item'>  <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۳</span><span class='icon'>📞</span></a></li><li><a href='https://www.atitravel.ir/internalflight/' target='_blank' rel='noopener noreferrer'>رزرو بلیط پروازهای داخلی</a></li></ul>"}
-                ]
+                "question": "گیلان (تابستان ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/gilan' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "گیلان",
+                    "تابستان",
+                    "۱۴۰۴"
+                ],
+                "category": "تورهای داخلی",
+                "flight": "مشخص نشده",
+                "location": "رشت",
+                "duration": "4 روز",
+                "price": "قیمت موجود نیست"
             },
             {
-                "question": "تهران",
-                "answer": "گزینه مورد نظر خود را انتخاب کنید",
-                "keywords": ["تهران"],
-                "category": "",
-                "sub_options": [
-                    {"question": "درباره پروازهای داخلی سوال دارم", "answer": "<ul> می‌توانید با برقراری تماس تلفنی یا به صورت مستقیم از طریق لینک زیر اقدام به خرید بلیط هواپیما برای کلیه مسیرهای داخلی کنید.<li><a href='tel:+985138808102' target='_blank' class='phone-item'> <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۲</span><span class='icon'>📞</span></a></li><li><a href='tel:+985138808103' target='_blank' class='phone-item'>  <span class='number'>۰۵۱-۳۸۸۰۸-۱۰۳</span><span class='icon'>📞</span></a></li><li><a href='https://www.atitravel.ir/internalflight/' target='_blank' rel='noopener noreferrer'>رزرو بلیط پروازهای داخلی</a></li></ul>"}
-                ]
+                "question": "کیش (تابستان ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/kiish' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "کیش",
+                    "تابستان",
+                    "۱۴۰۴"
+                ],
+                "category": "تورهای داخلی",
+                "flight": "مشخص نشده",
+                "location": "کیش",
+                "duration": "4 روز",
+                "price": "قیمت موجود نیست"
             }
         ],
-        "هتل‌های خارجی": [
-            {
-                "question": "هتل BIRBEY ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='BIRBEY ISTANBUL' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "birbey",
-                    "istanbul",
-                    "استانبول"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل SWEET HOME TAKSIM در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='SWEET HOME TAKSIM' width='150'><br>امتیاز: 8.5",
-                "keywords": [
-                    "sweet",
-                    "home",
-                    "taksim",
-                    "استانبول"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 8.5"
-            },
-            {
-                "question": "هتل ARACH HOTEL HARBIYE ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='ARACH HOTEL HARBIYE ISTANBUL' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "arach",
-                    "hotel",
-                    "harbiye",
-                    "istanbul",
-                    "استانبول"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": "هتل GRAND MILAN ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='GRAND MILAN ISTANBUL' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "grand",
-                    "milan",
-                    "istanbul",
-                    "هتل استانبول"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل THE MERWANO HOTEL ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='THE MERWANO HOTEL ISTANBUL' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "the",
-                    "merwano",
-                    "hotel",
-                    "istanbul"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل PERA ROSE HOTEL ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='PERA ROSE HOTEL ISTANBUL' width='150'><br>امتیاز: 8.5",
-                "keywords": [
-                    "pera",
-                    "rose",
-                    "hotel",
-                    "istanbul"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 8.5"
-            },
-            {
-                "question": "هتل FIDE HOTEL ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='FIDE HOTEL ISTANBUL' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "fide",
-                    "hotel",
-                    "istanbul"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": "هتل CITY CENTER HOTEL ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='CITY CENTER HOTEL ISTANBUL' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "city",
-                    "center",
-                    "hotel",
-                    "istanbul"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل PERA ROSE HOTEL ISTANBUL در استانبول",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg/Themes/AtiTravel/UI/Dist/images/Temp/5.jpg' alt='PERA ROSE HOTEL ISTANBUL' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "pera",
-                    "rose",
-                    "hotel",
-                    "istanbul"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "استانبول",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل Dorus Hotel در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='Dorus Hotel' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "dorus",
-                    "hotel"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": "هتل Aravi Hotel در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='Aravi Hotel' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "aravi",
-                    "hotel"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل Saffron Boutique Hotel در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='Saffron Boutique Hotel' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "saffron",
-                    "boutique",
-                    "hotel"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل Marco Polo Hotel در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='Marco Polo Hotel' width='150'><br>امتیاز: 8.5",
-                "keywords": [
-                    "marco",
-                    "polo",
-                    "hotel"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 8.5"
-            },
-            {
-                "question": "هتل Landmark Premier Hotel در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='Landmark Premier Hotel' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "landmark",
-                    "premier",
-                    "hotel"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": "هتل Dubai Grand Hotel by Fortune در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='Dubai Grand Hotel by Fortune' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "dubai",
-                    "grand",
-                    "hotel",
-                    "fortune"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل Hyatt Regency Dubai در دبی",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='Hyatt Regency Dubai' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "hyatt",
-                    "regency",
-                    "dubai"
-                ],
-                "category": "هتل‌های خارجی",
-                "location": "دبی",
-                "score": "امتیاز 6.3"
-            }
-        ],
-        "هتل‌های داخلی": [
-            {
-                "question": " هتل درویشی مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل درویشی مشهد' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل درویشی مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": " هتل پردیسان مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='هتل پردیسان مشهد' width='150'><br>امتیاز: 8.5",
-                "keywords": [
-                    "هتل پردیسان مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 8.5"
-            },
-            {
-                "question": " هتل مدینه الرضا مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل مدینه الرضا مشهد' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "هتل مدینه الرضا مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": " هتل قصر الضیافه مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='هتل قصر الضیافه مشهد' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل قصر الضیافه مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": " هتل قصر طلایی مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل قصر طلایی مشهد' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل قصر طلایی مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل کوثر مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل کوثر مشهد' width='150'><br>امتیاز: 8.5",
-                "keywords": [
-                    "هتل کوثر مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 8.5"
-            },
-            {
-                "question": "هتل هما مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل هما مشهد' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "هتل هما مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": " هتل الماس مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل الماس مشهد' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل الماس مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": " هتل جواد مشهد",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg/Themes/AtiTravel/UI/Dist/images/Temp/5.jpg' alt='هتل جواد مشهد' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل جواد مشهد"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "مشهد",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل استقلال تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل استقلال تهران' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "هتل استقلال تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": " هتل اسپیناس تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل اسپیناس تهران' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل اسپیناس تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل هما تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل هما تهران' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل هما تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": " هتل آزادی تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/951f3003-3947-4f8b-8dc3-26d1ebb4da60.jpg' alt='هتل آزادی تهران' width='150'><br>امتیاز: 8.5",
-                "keywords": [
-                    "هتل آزادی تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 8.5"
-            },
-            {
-                "question": "هتل انقلاب تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/84d381ae-82ca-4b20-a988-a6ba499db327.jpg' alt='هتل انقلاب تهران' width='150'><br>امتیاز: 5",
-                "keywords": [
-                    "هتل انقلاب تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 5"
-            },
-            {
-                "question": "هتل اوین تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/6c28aa4d-27e8-474f-aa9e-d54f61cf8a9f.jpg' alt='هتل اوین تهران' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل اوین تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 6.3"
-            },
-            {
-                "question": "هتل بزرگ تهران",
-                "answer": "<img src='https://cdn01.atitravel.com/2022/11/3447eae7-def9-46d4-bce0-a259ea833ade.jpg' alt='هتل بزرگ تهران' width='150'><br>امتیاز: 6.3",
-                "keywords": [
-                    "هتل بزرگ تهران"
-                ],
-                "category": "هتل‌های داخلی",
-                "location": "تهران",
-                "score": "امتیاز 6.3"
-            }
-        ],
+        
         "مقالات": [
             {
                 "question": "راهنمای سفر به گرجستان",
