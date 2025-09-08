@@ -301,12 +301,11 @@ def crawl_blog_articles():
             break
     return articles
 
-
 def extract_currency_data():
     print("🔍 در حال استخراج قیمت ارزها از tgju.org...")
     
     url = "https://www.tgju.org/currency"
-    currencies = []
+    currency_list = []
     
     try:
         driver.get(url)
@@ -330,7 +329,7 @@ def extract_currency_data():
                     # استخراج قیمت فعلی
                     current_price = row.find_element(By.CSS_SELECTOR, "td.nf").text.strip()
                     
-                    currencies.append({
+                    currency_list.append({
                         "name": currency_name,
                         "current_price": current_price
                     })
@@ -343,14 +342,54 @@ def extract_currency_data():
     except Exception as e:
         print(f"❌ خطا در بارگذاری صفحه ارز: {e}")
         return []
+     # تبدیل فرمت داده‌ها
+    converted_rates = convert_currency_format(currency_list)
     
-    return currencies
+    return converted_rates
 
-
-
-
-
-
+def convert_currency_format(currency_list):
+    """
+    لیستی از دیکشنری‌های ارز را به فرمت مورد نظر تبدیل می‌کند
+    
+    ورودی: [{"name": "دلار", "current_price": "1,027,000"}, ...]
+    خروجی: {"USD": 1027000, "EUR": 1203400, "GBP": 1386600}
+    """
+    currency_mapping = {
+        "دلار": "USD",
+        "یورو": "EUR", 
+        "پوند انگلیس": "GBP",
+        "پوند": "GBP"
+    }
+    
+    result = {}
+    
+    for currency in currency_list:
+        try:
+            persian_name = currency.get("name", "")
+            price_str = currency.get("current_price", "0")
+            
+            # تبدیل نام فارسی به انگلیسی
+            english_code = currency_mapping.get(persian_name)
+            if english_code:
+                # پاکسازی و تبدیل قیمت به عدد
+                cleaned_price = price_str.replace(',', '').replace('٬', '').strip()
+                price_number = int(cleaned_price)
+                
+                result[english_code] = price_number
+                print(f"✅ {persian_name} ({english_code}): {price_number}")
+            else:
+                print(f"⚠️ نام ارز '{persian_name}' در mapping وجود ندارد")
+                
+        except Exception as e:
+            print(f"❌ خطا در تبدیل ارز {currency}: {e}")
+    
+    # اطمینان از وجود همه ارزهای مورد نیاز
+    for currency_code in ["USD", "EUR", "GBP"]:
+        if currency_code not in result:
+            print(f"⚠️ ارز {currency_code} پیدا نشد، مقدار 0 تنظیم می‌شود")
+            result[currency_code] = 0
+    return result
+    
 def crawl_tours():
     base_url = "https://www.atitravel.ir"
     endpoints = {
@@ -396,3 +435,4 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
