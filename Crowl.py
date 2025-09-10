@@ -130,175 +130,146 @@ def scrape_all_pages(category, initial_url, item_class_name="result__item", pagi
     return all_items
 
 def scrape_single_article_page(article_url):
-    # This function is no longer needed as we are extracting directly from the listing page.
-    # Keeping it as a placeholder or for potential future use if detailed scraping is re-enabled.
-    pass
+    article_data = {
+        "country_name": "",
+        "brief_info": {},
+        "full_content": "",
+        "keywords": []
+    }
+    try:
+        driver.get(article_url)
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "blog__main"))
+        )
+        time.sleep(2) # Give time for content to load
 
-# def scrape_hotels(category, url):
-#     driver.get(url)
-#     WebDriverWait(driver, 10).until(
-#         EC.presence_of_element_located((By.CLASS_NAME, "js-best-package-select"))
-#     )
-#     time.sleep(1)
+        # Extract country name from title
+        try:
+            title_element = driver.find_element(By.CLASS_NAME, "blog__title")
+            full_title = title_element.text.strip()
+            # Assuming country name is the last word in the title, or part of it
+            country_match = re.search(r'راهنمای سفر به (.+)', full_title)
+            if country_match:
+                article_data["country_name"] = country_match.group(1).strip()
+            else:
+                # Fallback to breadcrumb if title doesn't match pattern
+                breadcrumb_elements = driver.find_elements(By.CSS_SELECTOR, ".breadcrumb li a")
+                if len(breadcrumb_elements) > 1:
+                    article_data["country_name"] = breadcrumb_elements[-1].text.strip()
+                else:
+                    article_data["country_name"] = full_title.split()[-1] # Last word as a fallback
+        except Exception as e:
+            print(f"⚠️ خطا در استخراج نام کشور از {article_url}: {e}")
+            article_data["country_name"] = "نامشخص"
 
-#     hotels = []
+        # Extract brief information table
+        try:
+            brief_info_header = driver.find_element(By.XPATH, "//h2[contains(., 'اطلاعات اجمالی')]")
+            table = brief_info_header.find_element(By.XPATH, "./following-sibling::table[1]")
+            rows = table.find_elements(By.TAG_NAME, "tr")
+            for row in rows:
+                cols = row.find_elements(By.TAG_NAME, "td")
+                if len(cols) == 2:
+                    key = cols[0].text.strip()
+                    value = cols[1].text.strip()
+                    article_data["brief_info"][key] = value
+        except Exception as e:
+            print(f"⚠️ خطا در استخراج اطلاعات اجمالی از {article_url}: {e}")
 
-#     # لیست گزینه‌های داخل select (مثلاً استانبول، دبی)
-#     select_element = driver.find_element(By.CLASS_NAME, "js-best-package-select")
-#     options = select_element.find_elements(By.TAG_NAME, "option")
+        # Extract full content
+        try:
+            full_content_element = driver.find_element(By.CLASS_NAME, "blog__detail")
+            article_data["full_content"] = full_content_element.text.strip()
+        except Exception as e:
+            print(f"⚠️ خطا در استخراج محتوای کامل از {article_url}: {e}")
 
-#     for option in options:
-#         value = option.get_attribute("value")  # مثلاً "tab-1"
-#         city = option.text.strip()             # مثلاً "استانبول"
+        # Add country name to keywords
+        if article_data["country_name"] and article_data["country_name"] not in article_data["keywords"]:
+            article_data["keywords"].append(article_data["country_name"])
 
-#         # انتخاب گزینه
-#         driver.execute_script("arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('change'))", select_element, value)
-#         time.sleep(1)
-
-#         # پیدا کردن آیتم‌های فعال این تب
-#         tab_div = driver.find_element(By.ID, value)
-#         hotel_cards = tab_div.find_elements(By.CLASS_NAME, "best-package__item")
-
-#         for card in hotel_cards:
-#             try:
-#                 name = card.find_element(By.CLASS_NAME, "best-package__item-title").text.strip()
-#                 score = card.find_element(By.CLASS_NAME, "best-package__item-rate").text.strip()
-#                 img = card.find_element(By.CSS_SELECTOR, "picture source").get_attribute("data-srcset")
-#                 alt = card.find_element(By.CSS_SELECTOR, "picture img").get_attribute("alt")
-
-#                 hotels.append({
-#                     "question": f"هتل {name} در {city}",
-#                     "answer": f"<img src='{img}' alt='{alt}' width='150'><br>امتیاز: {score}",
-#                     "keywords": extract_keywords(f"{name} {city} {score}"),
-#                     "category": category,
-#                     "location": city,
-#                     "score": f"امتیاز {score}"
-#                 })
-
-#             except Exception as e:
-#                 print("❌ خطا در استخراج هتل:", e)
-
-#     return hotels
+    except Exception as e:
+        print(f"❌ خطا در بارگذاری یا پردازش صفحه مقاله {article_url}: {e}")
+    return article_data
 
 def crawl_blog_articles():
     print("\n🚀 در حال پردازش: مقالات بلاگ")
     blog_url = "https://www.atitravel.ir/blog/"
+    all_article_links = []
     articles = []
 
+    # --- فاز ۱: بارگذاری تمام مقالات با کلیک روی "مشاهده مطالب بیشتر" ---
     try:
         driver.get(blog_url)
-        # Wait for the main blog list container to be present
         WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "main.blog-list__main"))
+            EC.presence_of_element_located((By.ID, "js-topic-list")) # Wait for the container
         )
         time.sleep(2)
     except Exception as e:
-        print(f"❌ خطا در بارگذاری صفحه بلاگ {blog_url} (انتظار برای CSS_SELECTOR: main.blog-list__main): {e}")
+        print(f"❌ خطا در بارگذاری صفحه بلاگ {blog_url}: {e}")
         return []
 
-    current_page_num = 1
     while True:
-        print(f"🔍 استخراج از صفحه {current_page_num} مقالات بلاگ...")
-        
-        # Find the main blog list section
         try:
-            blog_main_section = driver.find_element(By.CSS_SELECTOR, "main.blog-list__main")
-            # Use 'latest-topic__item' for the main list of articles within this section
-            article_cards = blog_main_section.find_elements(By.CLASS_NAME, "latest-topic__item")
-            for card in article_cards:
-                try:
-                    # Extract link and title directly from the card
-                    link_element = card.find_element(By.CSS_SELECTOR, "a.latest-topic__item-title")
-                    link = link_element.get_attribute("href")
-                    full_title = link_element.text.strip()
-                    
-                    country_name = "نامشخص"
-                    country_match = re.search(r'راهنمای سفر به (.+)', full_title)
-                    if country_match:
-                        country_name = country_match.group(1).strip()
-                    else:
-                        # Fallback if title doesn't match pattern
-                        # Try to get from alt attribute of image or other text
-                        try:
-                            img_alt = card.find_element(By.TAG_NAME, "img").get_attribute("alt")
-                            alt_match = re.search(r'راهنمای سفر به (.+)', img_alt)
-                            if alt_match:
-                                country_name = alt_match.group(1).strip()
-                            else:
-                                country_name = full_title.split()[-1] # Last word as a fallback
-                        except:
-                            country_name = full_title.split()[-1] # Last word as a fallback
-
-                    if link and link not in [art['link'] for art in articles]: # Avoid re-processing already added articles
-                        articles.append({
-                            "question": f"راهنمای سفر به {country_name}",
-                            "answer": f"<a href='{link}' target='_blank'>مشاهده مقاله {country_name}</a>",
-                            "keywords": [country_name] if country_name != "نامشخص" else [],
-                            "category": "مقالات",
-                            "link": link
-                        })
-                        print(f"   ✅ مقاله اضافه شد: عنوان='{country_name}', لینک='{link}'")
-                except Exception as e:
-                    print(f"❌ خطا در استخراج لینک یا عنوان از آیتم 'latest-topic__item' در صفحه {current_page_num}: {e}")
-        except Exception as e:
-            print(f"⚠️ خطا در یافتن بخش اصلی بلاگ (main.blog-list__main) در صفحه {current_page_num}: {e}")
-
-        # Also check for 'topic-card' elements in the "پیشنهاد می‌کنیم" section (if it exists outside the main list)
-        featured_article_cards = driver.find_elements(By.CLASS_NAME, "topic-card")
-        for card in featured_article_cards:
-            try:
-                link_element = card.find_element(By.TAG_NAME, "a")
-                link = link_element.get_attribute("href")
-                full_title = link_element.get_attribute("title") or link_element.text.strip()
-
-                country_name = "نامشخص"
-                country_match = re.search(r'راهنمای سفر به (.+)', full_title)
-                if country_match:
-                    country_name = country_match.group(1).strip()
-                else:
-                    country_name = full_title.split()[-1] # Last word as a fallback
-
-                if link and link not in [art['link'] for art in articles]:
-                    articles.append({
-                        "question": f"راهنمای سفر به {country_name}",
-                        "answer": f"<a href='{link}' target='_blank'>مشاهده مقاله {country_name}</a>",
-                        "keywords": [country_name] if country_name != "نامشخص" else [],
-                        "category": "مقالات",
-                        "link": link
-                    })
-                    print(f"   ✅ مقاله اضافه شد: عنوان='{country_name}', لینک='{link}' (از topic-card)")
-            except Exception as e:
-                print(f"❌ خطا در استخراج لینک یا عنوان از آیتم 'topic-card' در صفحه {current_page_num}: {e}")
-
-        if not articles: # Check if any articles were found on this page
-            print(f"⚠️ هیچ لینک مقاله‌ای در صفحه {current_page_num} یافت نشد. پایان پیمایش بلاگ.")
-            break
-        
-        # Return to the blog listing page to find the next pagination link
-        driver.get(blog_url)
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, "main.blog-list__main"))
-        )
-        time.sleep(2)
-
-        try:
-            # The pagination class is 'pagination' for blog
-            next_page_xpath = f"//ul[contains(@class, 'pagination')]//a[text()='{current_page_num + 1}']"
-            next_page_link = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.XPATH, next_page_xpath))
+            # Find the "Load More" button
+            load_more_button = WebDriverWait(driver, 5).until(
+                EC.element_to_be_clickable((By.XPATH, "//button[contains(., 'مشاهده مطالب بیشتر')]"))
             )
-            driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", next_page_link)
+            print("🔍 دکمه 'مشاهده مطالب بیشتر' یافت شد. در حال کلیک...")
+            # Scroll to the button and click it
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", load_more_button)
             time.sleep(1)
-            driver.execute_script("arguments[0].click();", next_page_link)
-            
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "main.blog-list__main"))
-            )
-            time.sleep(2)
-            current_page_num += 1
+            driver.execute_script("arguments[0].click();", load_more_button)
+            # Wait for new content to load
+            time.sleep(3) # Give it a few seconds for the new items to appear
         except Exception as e:
-            print(f"ℹ️ صفحه بعدی برای مقالات بلاگ (XPath: {next_page_xpath}) یافت نشد یا خطایی رخ داد: {e}")
+            print(f"ℹ️ دکمه 'مشاهده مطالب بیشتر' یافت نشد یا دیگر قابل کلیک نیست. پایان بارگذاری.")
             break
+
+    # --- فاز ۲: جمع‌آوری تمام لینک‌های مقالات از صفحه ---
+    print("\n✅ بارگذاری تمام شد. در حال جمع‌آوری لینک‌ها...")
+    try:
+        # Find all article links now that the page is fully loaded
+        topic_list = driver.find_element(By.ID, "js-topic-list")
+        article_items = topic_list.find_elements(By.CLASS_NAME, "latest-topic__item")
+        for item in article_items:
+            try:
+                # The link is on the title
+                link_element = item.find_element(By.CLASS_NAME, "latest-topic__item-title")
+                link = link_element.get_attribute("href")
+                if link and link not in all_article_links:
+                    all_article_links.append(link)
+            except Exception as e:
+                print(f"❌ خطا در استخراج لینک از یک آیتم مقاله: {e}")
+        
+        print(f"   🔗 تعداد کل لینک‌های یافت شده: {len(all_article_links)}")
+
+    except Exception as e:
+        print(f"⚠️ خطا در جمع‌آوری لینک‌ها پس از بارگذاری کامل: {e}")
+        return []
+
+
+    # --- فاز ۳: استخراج جزئیات از هر لینک جمع‌آوری شده ---
+    print(f"\n✅ جمع‌آوری لینک‌ها تمام شد. تعداد کل لینک‌ها برای استخراج: {len(all_article_links)}")
+    for i, link in enumerate(all_article_links):
+        print(f"   ➡️ ({i+1}/{len(all_article_links)}) در حال استخراج جزئیات از: {link}")
+        detailed_data = scrape_single_article_page(link)
+        
+        country_name = detailed_data.get("country_name", "نامشخص")
+        
+        # ساختاردهی خروجی بر اساس فرمت درخواستی
+        question = f"راهنمای سفر به {country_name}"
+        answer = f"<a href='{link}' target='_blank'>مشاهده مقاله {country_name}</a>"
+        keywords = [country_name] if country_name != "نامشخص" else []
+
+        articles.append({
+            "question": question,
+            "answer": answer,
+            "keywords": keywords,
+            "category": "مقالات",
+            "link": link
+        })
+        print(f"   ✅ مقاله اضافه شد: عنوان='{question}'")
+
     return articles
 
 def extract_currency_data():
@@ -435,5 +406,6 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
 
 
