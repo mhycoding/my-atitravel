@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: "0 11 * * 4"   #پنجشنبه ساعت 14:30  ایران  (UTC)
   workflow_dispatch:       #  اجرای دستی
-
+  
 jobs:
   run-crowl:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install selenium 
+          pip install selenium webdriver-manager
 
       - name: Install Chrome & Chromedriver
         uses: browser-actions/setup-chrome@latest
