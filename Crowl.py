@@ -9,10 +9,27 @@ import json
 import re
 import time
 
-# تنظیمات اولیه درایور
-options = webdriver.ChromeOptions()
-service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=service, options=chrome_options)
+def setup_driver():
+    """تنظیمات درایور با استفاده از Chrome نصب شده توسط GitHub Actions"""
+    chrome_options = Options()
+    
+    # optionهای ضروری برای محیط CI
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    
+    # استفاده از chromedriver از پیش نصب شده توسط browser-actions/setup-chrome
+    # مسیر پیش‌فرض chromedriver در این action
+    chrome_service = Service(executable_path="/usr/bin/chromedriver")
+    
+    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    return driver
+
+# تنظیم درایور
+driver = setup_driver()
 
 def extract_keywords(text):
     stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از"}
@@ -393,7 +410,7 @@ def crawl_tours():
         print("⚠️ هیچ داده ارزی استخراج نشد.") 
 
     # ذخیره در فایل
-    with open('ati-currency.json', 'w', encoding='utf-8') as f:
+    with open('ati.json', 'w', encoding='utf-8') as f:
         json.dump({"faqs": faqs, "metadata": {"last_updated": time.strftime("%Y-%m-%d")}}, f, ensure_ascii=False, indent=4)
 
     driver.quit()
@@ -402,6 +419,7 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
 
 
 
