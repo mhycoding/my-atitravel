@@ -3,15 +3,65 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import re
 import time
+import os
+import subprocess
 
-# استفاده از chromedriver که توسط GitHub Actions نصب شده
-service = Service(executable_path="/usr/bin/chromedriver")
-driver = webdriver.Chrome(service=service, options=options)
+def setup_driver():
+    chrome_options = Options()
+    
+    # تنظیمات ضروری برای محیط CI
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    
+    # پیدا کردن مسیر صحیح chromedriver
+    chromedriver_path = "/usr/bin/chromedriver"
+    
+    # اگر مسیر وجود ندارد، سعی کنید آن را پیدا کنید
+    if not os.path.exists(chromedriver_path):
+        try:
+            # استفاده از which برای پیدا کردن chromedriver
+            result = subprocess.run(['which', 'chromedriver'], 
+                                  capture_output=True, text=True, timeout=10)
+            if result.returncode == 0:
+                chromedriver_path = result.stdout.strip()
+                print(f"✅ Chromedriver found at: {chromedriver_path}")
+            else:
+                # اگر which کار نکرد، مسیرهای معمول را چک کنید
+                possible_paths = [
+                    "/usr/local/bin/chromedriver",
+                    "/opt/chromedriver/chromedriver",
+                    "/usr/lib/chromium-browser/chromedriver"
+                ]
+                for path in possible_paths:
+                    if os.path.exists(path):
+                        chromedriver_path = path
+                        break
+        except Exception as e:
+            print(f"⚠️ Error finding chromedriver: {e}")
+    
+    print(f"🚀 Using chromedriver at: {chromedriver_path}")
+    
+    # ایجاد service با مسیر صحیح
+    service = Service(executable_path=chromedriver_path)
+    
+    try:
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        print("✅ Chrome driver initialized successfully")
+        return driver
+    except Exception as e:
+        print(f"❌ Failed to initialize Chrome driver: {e}")
+        raise
+
+# ایجاد درایور
+driver = setup_driver()
 
 def extract_keywords(text):
     stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از"}
@@ -401,6 +451,7 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
 
 
 
