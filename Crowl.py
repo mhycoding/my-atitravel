@@ -2,34 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import re
 import time
 
-def setup_driver():
-    """تنظیمات درایور با استفاده از Chrome نصب شده توسط GitHub Actions"""
-    chrome_options = Options()
-    
-    # optionهای ضروری برای محیط CI
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--remote-debugging-port=9222")
-    
-    # استفاده از chromedriver از پیش نصب شده توسط browser-actions/setup-chrome
-    # مسیر پیش‌فرض chromedriver در این action
-    chrome_service = Service(executable_path="/usr/bin/chromedriver")
-    
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-    return driver
-
-# تنظیم درایور
-driver = setup_driver()
+# استفاده از chromedriver که توسط GitHub Actions نصب شده
+service = Service(executable_path="/usr/bin/chromedriver")
+driver = webdriver.Chrome(service=service, options=options)
 
 def extract_keywords(text):
     stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از"}
@@ -419,6 +401,7 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
 
 
 
