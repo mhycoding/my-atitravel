@@ -11,7 +11,7 @@ import time
 
 # تنظیمات اولیه درایور
 options = webdriver.ChromeOptions()
-service = Service(executable_path="/usr/bin/chromedriver")
+service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def extract_keywords(text):
@@ -402,6 +402,7 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
+
 
 
 
