@@ -44,9 +44,9 @@
         "امریکا" : ["برزیل","کانادا"]
     },
     "currency_rates": {
-        "USD": 988450,
-        "EUR": 1164900,
-        "GBP": 1342000
+        "USD": 1072050,
+        "EUR": 1259600,
+        "GBP": 1442500
     },
    "staticFaqData": {
         "faqs": [
@@ -217,7 +217,7 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "سوئیس، ایتالیا ،فرانسه و اسپانیا (مرداد ۱۴۰۴)",
+                "question": "سوئیس،ایتالیا،فرانسه و اسپانیا (مرداد ۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/switzerland-italy-france-and-spain' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
                     "سوئیس",
@@ -233,7 +233,23 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "سوئیس ,آلمان، اتریش و چک ( مرداد ۱۴۰۴)",
+                "question": "سوئیس ، فرانسه (بلژیک ) وهلند(شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/franceholland' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سوئیس",
+                    "فرانسه",
+                    "بلژیک",
+                    "وهلند",
+                    "شهریور"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "زوریخ، لوزان، پاریس، آمستردام",
+                "duration": "13 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "سوئیس,آلمان ،اتریش و چک ( مرداد ۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/switzerland-germany-austria' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
                     "سوئیس",
@@ -246,6 +262,70 @@
                 "flight": "مشخص نشده",
                 "location": "ژنو، لوسرن، مونیخ، وین، پراگ",
                 "duration": "13 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "برزیل کشتی کروز (شهریور ۱۴۰۴ )",
+                "answer": "<a href='https://www.atitravel.ir/tour/brazil' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "برزیل",
+                    "کشتی",
+                    "کروز",
+                    "شهریور",
+                    "۱۴۰۴"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "سائوپائولو، جنگل آمازون، ایگواسو، ریودوژانیرو",
+                "duration": "12 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "ژاپن (شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/japan1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "ژاپن",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "توکیو",
+                    "کیوتو"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "توکیو، کیوتو، اوزاکا",
+                "duration": "11 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "آفریقای جنوبی (شهریور ۱۴۰۴ )",
+                "answer": "<a href='https://www.atitravel.ir/tour/south-africa1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "آفریقای",
+                    "جنوبی",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "ژوهانسبورگ"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "ژوهانسبورگ، پارک جنگلی، سان سیتی، کیپ تاون",
+                "duration": "11 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "ویتنام (شهریور۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/vietnam1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "ویتنام",
+                    "شهریور۱۴۰۴",
+                    "هوشی",
+                    "مین",
+                    "دانانگ"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "هوشی مین، دانانگ، هانوی، هالونگ بی",
+                "duration": "10 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -265,6 +345,22 @@
                 "price": "قیمت موجود نیست"
             },
             {
+                "question": "سریلانکا (شهریور ۱۴۰۴ )",
+                "answer": "<a href='https://www.atitravel.ir/tour/serilanka-1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سریلانکا",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "کندی",
+                    "بنتوتا"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "کندی، بنتوتا، کلمبو",
+                "duration": "9 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
                 "question": "سوئیس (تیر۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/swiss1404' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -276,6 +372,22 @@
                 "flight": "مشخص نشده",
                 "location": "لوزان",
                 "duration": "6 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "هندوستان (شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/india' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "هندوستان",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "جیپور",
+                    "آگرا"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "جیپور (۱)، آگرا، دهلی",
+                "duration": "9 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -358,6 +470,38 @@
                 "price": "قیمت موجود نیست"
             },
             {
+                "question": "سوئیس ، فرانسه(شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/france-netherlands2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سوئیس",
+                    "فرانسه",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "زوریخ"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "زوریخ، لوزان، پاریس",
+                "duration": "10 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "برزیل (شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/brazil2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "برزیل",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "سائوپائولو",
+                    "ایگواسو"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "سائوپائولو، ایگواسو، ریودوژانیرو",
+                "duration": "10 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
                 "question": "سوئیس ، سوئد و فنلاند (مرداد۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/switzerland-france2025' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -426,7 +570,6 @@
                 "answer": "<a href='https://www.atitravel.ir/tour/englland-2025' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
                     "انگلستان",
-                    "انگلیس",
                     "مرداد",
                     "۱۴۰۴",
                     "لندن",
@@ -482,6 +625,102 @@
                 "flight": "مشخص نشده",
                 "location": "پکن، هانگژو، شانگهای",
                 "duration": "11 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "چین (شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/chiiina2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "چین",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "پکن",
+                    "هانگژو"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "پکن، هانگژو، ووژن، شانگهای",
+                "duration": "11 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "کره جنوبی (شهریور ۱۴۰۴ )",
+                "answer": "<a href='https://www.atitravel.ir/tour/1404-koria' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "کره",
+                    "جنوبی",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "سئول"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "سئول، ججو، بوسان",
+                "duration": "10 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "اسپانیا و پرتغال(شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/spain-and-portugal' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "اسپانیا",
+                    "پرتغال",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "بارسلون"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "بارسلون، مادرید، لیسبون",
+                "duration": "11 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "سوئیس و اسپانیا (شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/switzerland-and-spain-2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سوئیس",
+                    "اسپانیا",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "زوریخ"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "زوریخ، لوزان، بارسلون",
+                "duration": "9 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "سوئیس و ایتالیا (شهریور۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/switzerland-and-italy-2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سوئیس",
+                    "ایتالیا",
+                    "شهریور۱۴۰۴",
+                    "زوریخ",
+                    "لوزان"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "زوریخ، لوزان، رم",
+                "duration": "9 روز",
+                "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "سوئیس (شهریور ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/switzerland' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سوئیس",
+                    "شهریور",
+                    "۱۴۰۴",
+                    "زوریخ",
+                    "لوزان"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "زوریخ، لوزان",
+                "duration": "6 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -660,246 +899,6 @@
                 "location": "پوکت",
                 "duration": "8 روز",
                 "price": "قیمت موجود نیست"
-            },
-            {
-                "question": "هندوستان (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/india' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "هندوستان",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "جیپور",
-                    "آگرا"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ایر عربیا",
-                "location": "جیپور (۱)، آگرا، دهلی",
-                "duration": "9 روز -\n12 شهریور - 21 شهریور",
-                "price": "490 دلار آمریکا"
-            },
-            {
-                "question": "سریلانکا (شهریور ۱۴۰۴ )",
-                "answer": "<a href='https://www.atitravel.ir/tour/serilanka-1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سریلانکا",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "کندی",
-                    "بنتوتا"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ایر عربیا",
-                "location": "کندی، بنتوتا، کلمبو",
-                "duration": "9 روز -\n15 شهریور - 24 شهریور",
-                "price": "790 دلار آمریکا"
-            },
-            {
-                "question": "سوئیس (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/switzerland' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سوئیس",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "زوریخ",
-                    "لوزان"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "زوریخ، لوزان",
-                "duration": "6 روز -\n21 شهریور - 26 شهریور",
-                "price": "1,590 یورو"
-            },
-            {
-                "question": "ویتنام (شهریور۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/vietnam1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "ویتنام",
-                    "شهریور۱۴۰۴",
-                    "هوشی",
-                    "مین",
-                    "دانانگ"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "هوشی مین، دانانگ، هانوی، هالونگ بی",
-                "duration": "10 روز -\n11 شهریور - 21 شهریور",
-                "price": "1,690 دلار آمریکا"
-            },
-            {
-                "question": "چین (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/chiiina2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "چین",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "پکن",
-                    "هانگژو"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "پکن، هانگژو، ووژن، شانگهای",
-                "duration": "11 روز -\n02 شهریور - 13 شهریور",
-                "price": "1,790 دلار آمریکا"
-            },
-            {
-                "question": "سوئیس و ایتالیا (شهریور۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/switzerland-and-italy-2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سوئیس",
-                    "ایتالیا",
-                    "شهریور۱۴۰۴",
-                    "زوریخ",
-                    "لوزان"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "زوریخ، لوزان، رم",
-                "duration": "9 روز -\n21 شهریور - 29 شهریور",
-                "price": "2,290 یورو"
-            },
-            {
-                "question": "سوئیس و اسپانیا (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/switzerland-and-spain-2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سوئیس",
-                    "اسپانیا",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "زوریخ"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "زوریخ، لوزان، بارسلون",
-                "duration": "9 روز -\n21 شهریور - 29 شهریور",
-                "price": "2,490 یورو"
-            },
-            {
-                "question": "سوئیس، فرانسه (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/france-netherlands2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سوئیس",
-                    "فرانسه",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "زوریخ"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "زوریخ، لوزان، پاریس",
-                "duration": "10 روز -\n10 شهریور - 19 شهریور",
-                "price": "2,590 یورو"
-            },
-            {
-                "question": "اسپانیا و پرتغال (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/spain-and-portugal' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "اسپانیا",
-                    "پرتغال",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "بارسلون"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "بارسلون، مادرید، لیسبون",
-                "duration": "11 روز -\n19 شهریور - 29 شهریور",
-                "price": "2,790 یورو"
-            },
-            {
-                "question": "آفریقای جنوبی (شهریور ۱۴۰۴ )",
-                "answer": "<a href='https://www.atitravel.ir/tour/south-africa1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "آفریقای",
-                    "جنوبی",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "ژوهانسبورگ"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "ژوهانسبورگ، پارک جنگلی، سان سیتی، کیپ تاون",
-                "duration": "11 روز -\n14 شهریور - 25 شهریور",
-                "price": "2,490 دلار آمریکا"
-            },
-            {
-                "question": "کره جنوبی (شهریور ۱۴۰۴ )",
-                "answer": "<a href='https://www.atitravel.ir/tour/1404-koria' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "کره",
-                    "جنوبی",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "سئول"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "سئول، ججو، بوسان",
-                "duration": "10 روز -\n16 شهریور - 26 شهریور",
-                "price": "2,790 دلار آمریکا"
-            },
-            {
-                "question": "برزیل (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/brazil2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "برزیل",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "سائوپائولو",
-                    "ایگواسو"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "سائوپائولو، ایگواسو، ریودوژانیرو",
-                "duration": "10 روز -\n15 شهریور - 25 شهریور",
-                "price": "2,890 دلار آمریکا"
-            },
-            {
-                "question": "سوئیس، فرانسه (بلژیک ) و هلند (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/franceholland' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سوئیس",
-                    "فرانسه",
-                    "بلژیک",
-                    "وهلند",
-                    "شهریور"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "زوریخ، لوزان، پاریس، آمستردام",
-                "duration": "13 روز -\n10 شهریور - 22 شهریور",
-                "price": "2,990 یورو"
-            },
-            {
-                "question": "ژاپن (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/japan1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "ژاپن",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "توکیو",
-                    "کیوتو"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "توکیو، کیوتو، اوزاکا",
-                "duration": "11 روز -\n13 شهریور - 24 شهریور",
-                "price": "3,490 دلار آمریکا"
-            },
-            {
-                "question": "برزیل کشتی کروز (شهریور ۱۴۰۴ )",
-                "answer": "<a href='https://www.atitravel.ir/tour/brazil' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "برزیل",
-                    "کشتی",
-                    "کروز",
-                    "شهریور",
-                    "۱۴۰۴"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "ترکیش",
-                "location": "سائوپائولو، جنگل آمازون، ایگواسو، ریودوژانیرو",
-                "duration": "12 روز -\n13 شهریور - 25 شهریور",
-                "price": "3,990 دلار آمریکا"
             }
         ],
         "تورهای داخلی": [
@@ -1204,6 +1203,33 @@
                 ],
                 "category": "مقالات",
                 "link": "https://www.atitravel.ir/fa/blog/2025/09/11/130348/%D8%AA%D8%A7%DB%8C%D9%84%D9%86%D8%AF/"
+            },
+            {
+                "question": "راهنمای سفر به زامبیا",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/13/130350/%D8%B2%D8%A7%D9%85%D8%A8%DB%8C%D8%A7/' target='_blank'>مشاهده مقاله زامبیا</a>",
+                "keywords": [
+                    "زامبیا"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/13/130350/%D8%B2%D8%A7%D9%85%D8%A8%DB%8C%D8%A7/"
+            },
+            {
+                "question": "راهنمای سفر به ارمنستان",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/14/130351/%D8%A7%D8%B1%D9%85%D9%86%D8%B3%D8%AA%D8%A7%D9%86/' target='_blank'>مشاهده مقاله ارمنستان</a>",
+                "keywords": [
+                    "ارمنستان"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/14/130351/%D8%A7%D8%B1%D9%85%D9%86%D8%B3%D8%AA%D8%A7%D9%86/"
+            },
+            {
+                "question": "راهنمای سفر به ویتنام",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/02/130346/%D9%88%DB%8C%D8%AA%D9%86%D8%A7%D9%85/' target='_blank'>مشاهده مقاله ویتنام</a>",
+                "keywords": [
+                    "ویتنام"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/02/130346/%D9%88%DB%8C%D8%AA%D9%86%D8%A7%D9%85/"
             }
         ]
     },
