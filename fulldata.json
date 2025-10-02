@@ -44,9 +44,9 @@
         "امریکا" : ["برزیل","کانادا"]
     },
     "currency_rates": {
-        "USD": 1072050,
-        "EUR": 1259600,
-        "GBP": 1442500
+        "USD": 1154400,
+        "EUR": 1354400,
+        "GBP": 1556400
     },
    "staticFaqData": {
         "faqs": [
@@ -1230,6 +1230,42 @@
                 ],
                 "category": "مقالات",
                 "link": "https://www.atitravel.ir/fa/blog/2025/09/02/130346/%D9%88%DB%8C%D8%AA%D9%86%D8%A7%D9%85/"
+            },
+            {
+                "question": "راهنمای سفر به برزیل",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/20/130352/%D8%A8%D8%B1%D8%B2%DB%8C%D9%84/' target='_blank'>مشاهده مقاله برزیل</a>",
+                "keywords": [
+                    "برزیل"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/20/130352/%D8%A8%D8%B1%D8%B2%DB%8C%D9%84/"
+            },
+            {
+                "question": "راهنمای سفر به کره جنوبی",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/20/130353/%DA%A9%D8%B1%D9%87-%D8%AC%D9%86%D9%88%D8%A8%DB%8C/' target='_blank'>مشاهده مقاله کره جنوبی</a>",
+                "keywords": [
+                    "کره جنوبی"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/20/130353/%DA%A9%D8%B1%D9%87-%D8%AC%D9%86%D9%88%D8%A8%DB%8C/"
+            },
+            {
+                "question": "راهنمای سفر به آفریقای جنوبی",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/27/130354/%D9%81%D8%B1%DB%8C%D9%82%D8%A7%DB%8C-%D8%AC%D9%86%D9%88%D8%A8%DB%8C/' target='_blank'>مشاهده مقاله آفریقای جنوبی</a>",
+                "keywords": [
+                    "آفریقای جنوبی"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/27/130354/%D9%81%D8%B1%DB%8C%D9%82%D8%A7%DB%8C-%D8%AC%D9%86%D9%88%D8%A8%DB%8C/"
+            },
+            {
+                "question": "راهنمای سفر به ازبکستان",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/28/130355/%D8%A7%D8%B2%D8%A8%DA%A9%D8%B3%D8%AA%D8%A7%D9%86/' target='_blank'>مشاهده مقاله ازبکستان</a>",
+                "keywords": [
+                    "ازبکستان"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/28/130355/%D8%A7%D8%B2%D8%A8%DA%A9%D8%B3%D8%AA%D8%A7%D9%86/"
             }
         ]
     },
