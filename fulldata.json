@@ -44,9 +44,9 @@
         "امریکا" : ["برزیل","کانادا"]
     },
     "currency_rates": {
-        "USD": 1154400,
-        "EUR": 1354400,
-        "GBP": 1556400
+        "USD": 1156200,
+        "EUR": 1341100,
+        "GBP": 1546500
     },
    "staticFaqData": {
         "faqs": [
@@ -281,38 +281,6 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "ژاپن (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/japan1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "ژاپن",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "توکیو",
-                    "کیوتو"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "توکیو، کیوتو، اوزاکا",
-                "duration": "11 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
-                "question": "آفریقای جنوبی (شهریور ۱۴۰۴ )",
-                "answer": "<a href='https://www.atitravel.ir/tour/south-africa1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "آفریقای",
-                    "جنوبی",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "ژوهانسبورگ"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "ژوهانسبورگ، پارک جنگلی، سان سیتی، کیپ تاون",
-                "duration": "11 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
                 "question": "ویتنام (شهریور۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/vietnam1404' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -345,22 +313,6 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "سریلانکا (شهریور ۱۴۰۴ )",
-                "answer": "<a href='https://www.atitravel.ir/tour/serilanka-1404' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "سریلانکا",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "کندی",
-                    "بنتوتا"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "کندی، بنتوتا، کلمبو",
-                "duration": "9 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
                 "question": "سوئیس (تیر۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/swiss1404' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -372,22 +324,6 @@
                 "flight": "مشخص نشده",
                 "location": "لوزان",
                 "duration": "6 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
-                "question": "هندوستان (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/india' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "هندوستان",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "جیپور",
-                    "آگرا"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "جیپور (۱)، آگرا، دهلی",
-                "duration": "9 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -404,21 +340,6 @@
                 "flight": "مشخص نشده",
                 "location": "ژنو، لوسرن، فرانکفورت، برلین، ورشو",
                 "duration": "13 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
-                "question": "ارمنستان (تابستان ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/armenia' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "ارمنستان",
-                    "تابستان",
-                    "۱۴۰۴",
-                    "ایروان"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "ایروان",
-                "duration": "4 روز",
                 "price": "قیمت موجود نیست"
             },
             {
@@ -486,22 +407,6 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "برزیل (شهریور ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/brazil2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "برزیل",
-                    "شهریور",
-                    "۱۴۰۴",
-                    "سائوپائولو",
-                    "ایگواسو"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "سائوپائولو، ایگواسو، ریودوژانیرو",
-                "duration": "10 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
                 "question": "سوئیس ، سوئد و فنلاند (مرداد۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/switzerland-france2025' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -530,22 +435,6 @@
                 "category": "تورهای خارجی",
                 "flight": "مشخص نشده",
                 "location": "Puerto Princesa، ال نیدو، مانیل",
-                "duration": "9 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
-                "question": "چین (تیر ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/china2025' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "چین",
-                    "تیر",
-                    "۱۴۰۴",
-                    "پکن",
-                    "هانگژو"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "پکن، هانگژو، شانگهای",
                 "duration": "9 روز",
                 "price": "قیمت موجود نیست"
             },
@@ -739,21 +628,6 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "امارات (تابستان ۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/emarat' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "امارات",
-                    "تابستان",
-                    "۱۴۰۴",
-                    "دبی"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "دبی",
-                "duration": "5 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
                 "question": "ترکیه (تیر۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/turkey' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -811,20 +685,6 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "بالی (تابستان۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/bali' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "بالی",
-                    "تابستان۱۴۰۴",
-                    "بالی"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "بالی",
-                "duration": "7 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
                 "question": "مالزی (تابستان۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/malaysia' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -870,22 +730,6 @@
                 "price": "قیمت موجود نیست"
             },
             {
-                "question": "ازبکستان (مرداد۱۴۰۴)",
-                "answer": "<a href='https://www.atitravel.ir/tour/uzbekistan' target='_blank'>مشاهده جزئیات</a>",
-                "keywords": [
-                    "ازبکستان",
-                    "مرداد۱۴۰۴",
-                    "بخارا",
-                    "سمرقند",
-                    "تاشکند"
-                ],
-                "category": "تورهای خارجی",
-                "flight": "مشخص نشده",
-                "location": "بخارا، سمرقند، تاشکند",
-                "duration": "8 روز",
-                "price": "قیمت موجود نیست"
-            },
-            {
                 "question": "تایلند (تابستان ۱۴۰۴)",
                 "answer": "<a href='https://www.atitravel.ir/tour/thiland' target='_blank'>مشاهده جزئیات</a>",
                 "keywords": [
@@ -899,6 +743,211 @@
                 "location": "پوکت",
                 "duration": "8 روز",
                 "price": "قیمت موجود نیست"
+            },
+            {
+                "question": "ارمنستان (پائیز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/armenia' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "ارمنستان",
+                    "پائیز",
+                    "۱۴۰۴",
+                    "ایروان"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "سپهران",
+                "location": "ایروان",
+                "duration": "4 روز -\n19 مهر - 22 مهر",
+                "price": "120 دلار آمریکا"
+            },
+            {
+                "question": "امارات (پائیز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/emarat' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "امارات",
+                    "پائیز",
+                    "۱۴۰۴",
+                    "دبی"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "فلای دبی",
+                "location": "دبی",
+                "duration": "5 روز -\n04 آبان - 08 آبان",
+                "price": "1,550 درهم"
+            },
+            {
+                "question": "هندوستان (پاییز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/hindostan' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "هندوستان",
+                    "پاییز",
+                    "۱۴۰۴",
+                    "دهلی",
+                    "آگرا"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "مشخص نشده",
+                "location": "دهلی، آگرا ( هند ) ، جیپور",
+                "duration": "8 روز -\n06 آبان - 13 آبان",
+                "price": "75,995,000 تومان"
+            },
+            {
+                "question": "ازبکستان (پاییز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/uzbekistan' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "ازبکستان",
+                    "پاییز",
+                    "۱۴۰۴",
+                    "بخارا",
+                    "سمرقند"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "قشم ایر",
+                "location": "بخارا، سمرقند، تاشکند",
+                "duration": "8 روز -\n17 مهر - 24 مهر",
+                "price": "830 دلار آمریکا"
+            },
+            {
+                "question": "سریلانکا (آبان ۱۴۰۴ )",
+                "answer": "<a href='https://www.atitravel.ir/tour/serilanka-1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "سریلانکا",
+                    "آبان",
+                    "۱۴۰۴",
+                    "کندی",
+                    "بنتوتا"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "ایر عربیا",
+                "location": "کندی، بنتوتا، کلمبو",
+                "duration": "9 روز -\n01 آبان - 10 آبان",
+                "price": "790 دلار آمریکا"
+            },
+            {
+                "question": "هندوستان (پاییز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/india' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "هندوستان",
+                    "پاییز",
+                    "۱۴۰۴",
+                    "جیپور",
+                    "آگرا"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "ایر عربیا",
+                "location": "جیپور (۱)، آگرا، دهلی",
+                "duration": "9 روز -\n26 آبان - 05 آذر",
+                "price": "690 دلار آمریکا"
+            },
+            {
+                "question": "بالی (پائیز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/bali' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "بالی",
+                    "پائیز",
+                    "۱۴۰۴",
+                    "بالی"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "امارات",
+                "location": "بالی",
+                "duration": "7 روز -\n19 مهر - 25 مهر",
+                "price": "255 دلار آمریکا"
+            },
+            {
+                "question": "چین (آبان ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/china2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "چین",
+                    "آبان",
+                    "۱۴۰۴",
+                    "پکن",
+                    "هانگژو"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "امارات",
+                "location": "پکن، هانگژو، ووژن، شانگهای",
+                "duration": "11 روز -\n25 آبان - 06 آذر",
+                "price": "1,790 دلار آمریکا"
+            },
+            {
+                "question": "اسپانیا (زمستان ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/spain2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "اسپانیا",
+                    "زمستان",
+                    "۱۴۰۴",
+                    "مادرید",
+                    "بارسلون"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "ترکیش",
+                "location": "مادرید، بارسلون",
+                "duration": "8 روز -\n13 بهمن - 20 بهمن",
+                "price": "2,190 یورو"
+            },
+            {
+                "question": "یونان - فرانسه ( ویژه ژانویه) 1404",
+                "answer": "<a href='https://www.atitravel.ir/tour/yonan-france-1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "یونان",
+                    "فرانسه",
+                    "ویژه",
+                    "ژانویه",
+                    "1404"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "ترکیش",
+                "location": "آتن، پاریس",
+                "duration": "9 روز -\n06 دی - 14 دی",
+                "price": "2,390 یورو"
+            },
+            {
+                "question": "آفریقای جنوبی (آذر ۱۴۰۴ )",
+                "answer": "<a href='https://www.atitravel.ir/tour/south-africa1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "آفریقای",
+                    "جنوبی",
+                    "آذر",
+                    "۱۴۰۴",
+                    "ژوهانسبورگ"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "ترکیش",
+                "location": "ژوهانسبورگ، پارک جنگلی، سان سیتی، کیپ تاون",
+                "duration": "11 روز -\n23 آذر - 04 دی",
+                "price": "2,790 دلار آمریکا"
+            },
+            {
+                "question": "ژاپن (پاییز ۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/japan1404' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "ژاپن",
+                    "پاییز",
+                    "۱۴۰۴",
+                    "توکیو",
+                    "اوزاکا"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "امارات",
+                "location": "توکیو، اوزاکا",
+                "duration": "9 روز -\n27 آبان - 06 آذر",
+                "price": "3,290 دلار آمریکا"
+            },
+            {
+                "question": "برزیل ( بهمن۱۴۰۴)",
+                "answer": "<a href='https://www.atitravel.ir/tour/brazil2025' target='_blank'>مشاهده جزئیات</a>",
+                "keywords": [
+                    "برزیل",
+                    "بهمن۱۴۰۴",
+                    "سائوپائولو",
+                    "ایگواسو",
+                    "ریودوژانیرو"
+                ],
+                "category": "تورهای خارجی",
+                "flight": "امارات",
+                "location": "سائوپائولو، ایگواسو، ریودوژانیرو",
+                "duration": "10 روز -\n18 بهمن - 29 بهمن",
+                "price": "3,690 دلار آمریکا"
             }
         ],
         "تورهای داخلی": [
@@ -1266,6 +1315,33 @@
                 ],
                 "category": "مقالات",
                 "link": "https://www.atitravel.ir/fa/blog/2025/09/28/130355/%D8%A7%D8%B2%D8%A8%DA%A9%D8%B3%D8%AA%D8%A7%D9%86/"
+            },
+            {
+                "question": "راهنمای سفر به بالی",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/09/28/130356/%D8%A8%D8%A7%D9%84%DB%8C/' target='_blank'>مشاهده مقاله بالی</a>",
+                "keywords": [
+                    "بالی"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/09/28/130356/%D8%A8%D8%A7%D9%84%DB%8C/"
+            },
+            {
+                "question": "راهنمای سفر به سریلانکا",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/04/130357/%D8%B3%D8%B1%DB%8C%D9%84%D8%A7%D9%86%DA%A9%D8%A7/' target='_blank'>مشاهده مقاله سریلانکا</a>",
+                "keywords": [
+                    "سریلانکا"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/04/130357/%D8%B3%D8%B1%DB%8C%D9%84%D8%A7%D9%86%DA%A9%D8%A7/"
+            },
+            {
+                "question": "راهنمای سفر به یونان",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/05/130358/%DB%8C%D9%88%D9%86%D8%A7%D9%86/' target='_blank'>مشاهده مقاله یونان</a>",
+                "keywords": [
+                    "یونان"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/05/130358/%DB%8C%D9%88%D9%86%D8%A7%D9%86/"
             }
         ]
     },
