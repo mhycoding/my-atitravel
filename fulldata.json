@@ -44,9 +44,9 @@
         "امریکا" : ["برزیل","کانادا"]
     },
     "currency_rates": {
-        "USD": 115620,
-        "EUR": 134110,
-        "GBP": 154650
+        "USD": 1095800,
+        "EUR": 1275300,
+        "GBP": 1467400
     },
    "staticFaqData": {
         "faqs": [
@@ -1342,6 +1342,42 @@
                 ],
                 "category": "مقالات",
                 "link": "https://www.atitravel.ir/fa/blog/2025/10/05/130358/%DB%8C%D9%88%D9%86%D8%A7%D9%86/"
+            },
+            {
+                "question": "راهنمای سفر به ایتالیا",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/05/130359/%D8%A7%DB%8C%D8%AA%D8%A7%D9%84%DB%8C%D8%A7/' target='_blank'>مشاهده مقاله ایتالیا</a>",
+                "keywords": [
+                    "ایتالیا"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/05/130359/%D8%A7%DB%8C%D8%AA%D8%A7%D9%84%DB%8C%D8%A7/"
+            },
+            {
+                "question": "راهنمای سفر به پرتغال",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/06/130360/%D9%BE%D8%B1%D8%AA%D8%BA%D8%A7%D9%84/' target='_blank'>مشاهده مقاله پرتغال</a>",
+                "keywords": [
+                    "پرتغال"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/06/130360/%D9%BE%D8%B1%D8%AA%D8%BA%D8%A7%D9%84/"
+            },
+            {
+                "question": "راهنمای سفر به فنلاند",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/06/130361/%D9%81%D9%86%D9%84%D8%A7%D9%86%D8%AF/' target='_blank'>مشاهده مقاله فنلاند</a>",
+                "keywords": [
+                    "فنلاند"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/06/130361/%D9%81%D9%86%D9%84%D8%A7%D9%86%D8%AF/"
+            },
+            {
+                "question": "راهنمای سفر به لهستان",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/06/130362/%D9%84%D9%87%D8%B3%D8%AA%D8%A7%D9%86/' target='_blank'>مشاهده مقاله لهستان</a>",
+                "keywords": [
+                    "لهستان"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/06/130362/%D9%84%D9%87%D8%B3%D8%AA%D8%A7%D9%86/"
             }
         ]
     },
