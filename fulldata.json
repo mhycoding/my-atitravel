@@ -45,10 +45,10 @@
         "افریقا" : ["افریقای جنوبی"]
     },
     "currency_rates": {
-        "USD": 111090,
-        "EUR": 129540,
-        "AED": 30263,
-        "GBP": 1493000
+        "USD": 112830,
+        "EUR": 131140,
+        "AED": 30720,
+        "GBP": 148610
     },
    "staticFaqData": {
         "faqs": [
@@ -961,6 +961,60 @@
                 ],
                 "category": "مقالات",
                 "link": "https://www.atitravel.ir/fa/blog/2025/10/13/130370/%D9%88%D8%A7%D9%86/"
+            },
+            {
+                "question": "راهنمای سفر به ترابزون",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/16/130371/%D8%AA%D8%B1%D8%A7%D8%A8%D8%B2%D9%88%D9%86/' target='_blank'>مشاهده مقاله ترابزون</a>",
+                "keywords": [
+                    "ترابزون"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/16/130371/%D8%AA%D8%B1%D8%A7%D8%A8%D8%B2%D9%88%D9%86/"
+            },
+            {
+                "question": "راهنمای سفر به رقص",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/11/01/130372/%D9%81%D9%84%D8%A7%D9%85%D9%86%DA%A9%D9%88/' target='_blank'>مشاهده مقاله رقص</a>",
+                "keywords": [
+                    "رقص"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/11/01/130372/%D9%81%D9%84%D8%A7%D9%85%D9%86%DA%A9%D9%88/"
+            },
+            {
+                "question": "راهنمای سفر به مالزی",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/10/11/130367/%D9%85%D8%A7%D9%84%D8%B2%DB%8C/' target='_blank'>مشاهده مقاله مالزی</a>",
+                "keywords": [
+                    "مالزی"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/10/11/130367/%D9%85%D8%A7%D9%84%D8%B2%DB%8C/"
+            },
+            {
+                "question": "راهنمای سفر به ساده",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/11/03/130373/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7/' target='_blank'>مشاهده مقاله ساده</a>",
+                "keywords": [
+                    "ساده"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/11/03/130373/%D9%BE%DB%8C%D8%AA%D8%B2%D8%A7/"
+            },
+            {
+                "question": "راهنمای سفر به اروپا",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/11/04/130376/%DA%AF%D9%88%D8%AA%DB%8C%DA%A9-%D8%AF%D8%B1-%DA%A9%D9%84%DB%8C%D8%B3%D8%A7-%D9%87%D8%A7%DB%8C-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7/' target='_blank'>مشاهده مقاله اروپا</a>",
+                "keywords": [
+                    "اروپا"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/11/04/130376/%DA%AF%D9%88%D8%AA%DB%8C%DA%A9-%D8%AF%D8%B1-%DA%A9%D9%84%DB%8C%D8%B3%D8%A7-%D9%87%D8%A7%DB%8C-%D8%A7%D8%B1%D9%88%D9%BE%D8%A7/"
+            },
+            {
+                "question": "راهنمای سفر به می‌شناسد",
+                "answer": "<a href='https://www.atitravel.ir/fa/blog/2025/11/04/130374/%D8%B4%DA%AF%D9%81%D8%AA%DB%8C-%D9%87%D8%A7%DB%8C-%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/' target='_blank'>مشاهده مقاله می‌شناسد</a>",
+                "keywords": [
+                    "می‌شناسد"
+                ],
+                "category": "مقالات",
+                "link": "https://www.atitravel.ir/fa/blog/2025/11/04/130374/%D8%B4%DA%AF%D9%81%D8%AA%DB%8C-%D9%87%D8%A7%DB%8C-%D8%A8%D8%A7%D8%B3%D8%AA%D8%A7%D9%86%DB%8C-%D8%A7%DB%8C%D8%B1%D8%A7%D9%86/"
             }
         ]
     },
