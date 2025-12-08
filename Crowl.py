@@ -1,29 +1,26 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
 import re
 import time
 import os
 
+# تنظیمات اولیه درایور
+# استفاده از مسیر نسبی برای chromedriver.exe
+script_dir = os.path.dirname(__file__)
+chromedriver_path = os.path.join(script_dir, 'chromedriver-win64', 'chromedriver.exe')
+service = Service(chromedriver_path)
+options = webdriver.ChromeOptions()
+# برای بررسی بهتر خطاها headless رو موقتا غیرفعال کن
+#options.add_argument("--headless=new")
+driver = webdriver.Chrome(service=service, options=options)
 
-def setup_driver():
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--remote-debugging-port=9222")
+# اضافه کردن این خط:
+wait = WebDriverWait(driver, 10)  # 10 ثانیه timeout
 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    return driver
-
-driver = setup_driver(
 
 def extract_keywords(text):
     stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از"}
@@ -33,8 +30,19 @@ def extract_keywords(text):
 def extract_price(card):
     try:
         price_container = card.find_element(By.CLASS_NAME, "result__item-price")
-        price_num = price_container.find_element(By.CLASS_NAME, "fa-num").text.strip()
-        price_unit = price_container.find_element(By.CSS_SELECTOR, ".result__item-price-items label").text.strip()
+        unknown = price_container.find_elements(By.CLASS_NAME, "result__item-price-unknown")
+        if unknown:
+            return "مشخص نیست"
+
+        # 2. کارت‌هایی که قیمت دارند
+        item = price_container.find_element(By.CSS_SELECTOR, ".result__item-price-item")
+
+        num_el = item.find_element(By.CLASS_NAME, "fa-num")
+        unit_el = item.find_element(By.TAG_NAME, "label")
+
+        price_num = num_el.text.strip()
+        price_unit = unit_el.text.strip()
+        
         return f"{price_num} {price_unit}"
     except Exception as e:
         print(f"Error extracting price: {e}")
@@ -154,6 +162,7 @@ def scrape_single_article_page(article_url):
         try:
             title_element = driver.find_element(By.CLASS_NAME, "blog__title")
             full_title = title_element.text.strip()
+            article_data["full_title"] = full_title
             # Assuming country name is the last word in the title, or part of it
             country_match = re.search(r'راهنمای سفر به (.+)', full_title)
             if country_match:
@@ -169,21 +178,6 @@ def scrape_single_article_page(article_url):
             print(f"⚠️ خطا در استخراج نام کشور از {article_url}: {e}")
             article_data["country_name"] = "نامشخص"
 
-        # Extract brief information table
-        try:
-            brief_info_header = driver.find_element(By.XPATH, "//h2[contains(., 'اطلاعات اجمالی')]")
-            table = brief_info_header.find_element(By.XPATH, "./following-sibling::table[1]")
-            rows = table.find_elements(By.TAG_NAME, "tr")
-            for row in rows:
-                cols = row.find_elements(By.TAG_NAME, "td")
-                if len(cols) == 2:
-                    key = cols[0].text.strip()
-                    value = cols[1].text.strip()
-                    article_data["brief_info"][key] = value
-        except Exception as e:
-            print(f"⚠️ خطا در استخراج اطلاعات اجمالی از {article_url}: {e}")
-
-        # Extract full content
         try:
             full_content_element = driver.find_element(By.CLASS_NAME, "blog__detail")
             article_data["full_content"] = full_content_element.text.strip()
@@ -197,6 +191,8 @@ def scrape_single_article_page(article_url):
     except Exception as e:
         print(f"❌ خطا در بارگذاری یا پردازش صفحه مقاله {article_url}: {e}")
     return article_data
+
+
 
 def crawl_blog_articles():
     print("\n🚀 در حال پردازش: مقالات بلاگ")
@@ -262,11 +258,24 @@ def crawl_blog_articles():
         detailed_data = scrape_single_article_page(link)
         
         country_name = detailed_data.get("country_name", "نامشخص")
-        
+
+        full_title = detailed_data.get("full_title", "عنوان نامشخص") # Get full_title here
+
         # ساختاردهی خروجی بر اساس فرمت درخواستی
-        question = f"راهنمای سفر به {country_name}"
-        answer = f"<a href='{link}' target='_blank'>مشاهده مقاله {country_name}</a>"
-        keywords = [country_name] if country_name != "نامشخص" else []
+        # بر اساس درخواست کاربر: اگر عنوان "راهنمای سفر به" داشت، مثل قبل عمل کن. در غیر این صورت، عنوان کامل و کلمات کلیدی را از آن استخراج کن.
+        if full_title.startswith("راهنمای سفر به "):
+            question = full_title
+            answer = f"<a href=\\'{link}\\' target=\\'_blank\\'>مشاهده مقاله {country_name}</a>"
+            keywords = [country_name] if country_name != "نامشخص" else []
+        else:
+            question = full_title
+            answer = f"<a href=\\'{link}\\' target=\\'_blank\\'>مشاهده مقاله {full_title}</a>"
+            
+            cleaned_title = re.sub(r'[;،_:\-()!?.]+\s*', ' ', full_title)
+            raw_keywords = [word for word in cleaned_title.split() if word.strip()] # Split by space and filter empty
+            stop_words = {"تور", "هتل", "پرواز", "جزئیات", "مشاهده", "رزرو", "سفر", "به", "از", "در", "و", "با", "یا", "که", "این", "آن", "های", "ها", "یک", "است", "برای", "تا", "را", "بر", "هم", "چون", "اما", "اگر", "چه", "زیرا", "بدون", "کنید", "کنند", "کند", "کنم", "کرد", "کرده", "باید", "نباید", "می", "نمی", "از", "هر", "بی", "آنچه", "همه", "فقط", "نیست", "بیشتر", "کمتر", "درباره", "دوباره", "شاید", "قطعا", "البته", "کلا", "واقعا", "خیلی", "تنها", "آنها", "کسانی", "یکی", "فقط"}
+            
+            keywords = [word for word in raw_keywords if word.lower() not in stop_words and len(word) > 2][:6]
 
         articles.append({
             "question": question,
@@ -275,6 +284,7 @@ def crawl_blog_articles():
             "category": "مقالات",
             "link": link
         })
+    
         print(f"   ✅ مقاله اضافه شد: عنوان='{question}'")
 
     return articles
@@ -295,7 +305,7 @@ def extract_currency_data():
         
         # پیدا کردن تمام ردیف‌های جدول ارزها
         currency_rows = driver.find_elements(By.CSS_SELECTOR, "table.data-table.market-table tbody tr")
-        target_currencies = ["دلار", "یورو", "پوند انگلیس"]
+        target_currencies = ["دلار", "یورو", "پوند انگلیس", "درهم امارات"]
         
         for row in currency_rows:
             try:
@@ -306,7 +316,7 @@ def extract_currency_data():
                 if currency_name in target_currencies  :
                     # استخراج قیمت فعلی
                     current_price = row.find_element(By.CSS_SELECTOR, "td.nf").text.strip()
-                    
+        
                     currency_list.append({
                         "name": currency_name,
                         "current_price": current_price
@@ -336,9 +346,8 @@ def convert_currency_format(currency_list):
         "دلار": "USD",
         "یورو": "EUR", 
         "پوند انگلیس": "GBP",
-        "پوند": "GBP"
+        "درهم امارات": "AED"
     }
-    
     result = {}
     
     for currency in currency_list:
@@ -351,7 +360,7 @@ def convert_currency_format(currency_list):
             if english_code:
                 # پاکسازی و تبدیل قیمت به عدد
                 cleaned_price = price_str.replace(',', '').replace('٬', '').strip()
-                price_number = int(cleaned_price)
+                price_number = int(cleaned_price) // 10
                 
                 result[english_code] = price_number
                 print(f"✅ {persian_name} ({english_code}): {price_number}")
@@ -366,23 +375,21 @@ def convert_currency_format(currency_list):
         if currency_code not in result:
             print(f"⚠️ ارز {currency_code} پیدا نشد، مقدار 0 تنظیم می‌شود")
             result[currency_code] = 0
-    return result
     
+    return result
+ 
 def crawl_tours():
     base_url = "https://www.atitravel.ir"
     endpoints = {
         "تورهای خارجی": "/tours/external/",
-        "تورهای داخلی": "/tours/internal/",
-        # "هتل‌های خارجی": "/externalhotel/",
-        # "هتل‌های داخلی": "/internalhotel/",
+       "تورهای داخلی": "/tours/internal/",
+        
     }
 
     faqs = {}
 
     for category, endpoint in endpoints.items():
         url = base_url + endpoint
-        # Use specific pagination XPATH for hotels if different, otherwise default 'paging'
-        # Assuming hotels also use 'paging' for now, but can be adjusted if needed.
         try:    
             if "هتل" in category:
                 pass
@@ -404,7 +411,7 @@ def crawl_tours():
         print("⚠️ هیچ داده ارزی استخراج نشد.") 
 
     # ذخیره در فایل
-    with open('ati.json', 'w', encoding='utf-8') as f:
+    with open('ati2.json', 'w', encoding='utf-8') as f:
         json.dump({"faqs": faqs, "metadata": {"last_updated": time.strftime("%Y-%m-%d")}}, f, ensure_ascii=False, indent=4)
 
     driver.quit()
@@ -413,12 +420,3 @@ def crawl_tours():
 # اجرا
 if __name__ == "__main__":
     crawl_tours()
-
-
-
-
-
-
-
-
-
